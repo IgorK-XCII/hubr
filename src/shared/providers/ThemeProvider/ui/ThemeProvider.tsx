@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ThemeContext, themeContextManager } from "./ThemeContext";
+import { ThemeContext, themeContextManager } from "../lib/ThemeContext";
 
 export const ThemeProvider: FC = ({ children }) => {
   return (

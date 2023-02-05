@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { LOCAL_STORAGE_THEME_KEY } from "./constants";
+import { LOCAL_STORAGE_THEME_KEY } from "../config/themeConstants";
 
 export enum THEME {
   LIGHT = "light",
