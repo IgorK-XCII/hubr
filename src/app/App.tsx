@@ -1,10 +1,9 @@
 import "./styles/index.scss";
 import { Routes, Route, Link } from "react-router-dom";
-import { AboutPageLazy } from "./pages/AboutPage/AboutPage.lazy";
-import { MainPageLazy } from "./pages/MainPage/MainPage.lazy";
+import { AboutPageLazy, MainPageLazy } from "@/pages";
+import { useTheme } from "@/shared/providers";
+import { classNames } from "@/shared/lib";
 import { Suspense } from "react";
-import { useTheme } from "./theme";
-import { classNames } from "./helpers";
 
 export const App = () => {
   const { theme, toggleTheme } = useTheme();
