@@ -1,7 +1,10 @@
-import { classNames } from "@/shared/lib";
+import { clsx } from "@/shared/lib";
 import { FC } from "react";
 import cls from "./Navbar.module.scss";
-import { AppLink, AppLinkTheme } from "@/shared/ui";
+import { AppLink } from "@/shared/ui";
+import { RouterPaths } from "@/shared/config";
+import { APP_ROUTES } from "@/shared/config/router/appRoutes";
+import { ThemeSwitcher } from "@/features/ThemeSwitcher";
 
 interface NavbarProps {
   className?: string;
@@ -9,12 +12,13 @@ interface NavbarProps {
 
 export const Navbar: FC<NavbarProps> = ({ className }) => {
   return (
-    <div className={classNames([cls.navbar, className])}>
-      <div className={classNames([cls.links])}>
-        <AppLink theme={AppLinkTheme.SECONDARY} to={"/"}>
+    <div className={clsx([cls.navbar, className])}>
+      <ThemeSwitcher />
+      <div className={clsx([cls.links])}>
+        <AppLink theme={"primary"} to={RouterPaths[APP_ROUTES.MAIN]}>
           Главная
         </AppLink>
-        <AppLink theme={AppLinkTheme.SECONDARY} to={"/about"}>
+        <AppLink theme={"primary"} to={RouterPaths[APP_ROUTES.ABOUT]}>
           О сайте
         </AppLink>
       </div>
