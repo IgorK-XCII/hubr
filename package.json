@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@svgr/webpack": "^6.5.1",
     "@types/node": "^18.11.18",
     "@types/react": "^17.0.39",
@@ -22,6 +23,7 @@
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
+    "react-refresh": "^0.14.0",
     "sass": "^1.58.0",
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
