@@ -1,3 +1,3 @@
-import { lazy } from 'react';
+import { lazyComponentLoader } from '@/shared/lib';
 
-export const MainPageLazy = lazy(() => import('./MainPage').then((module) => ({ default: module.MainPage })));
+export const MainPageLazy = lazyComponentLoader(() => import('./MainPage'), 'MainPage');

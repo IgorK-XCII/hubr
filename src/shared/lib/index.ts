@@ -1,1 +1,2 @@
-export * from './clsx/clsx';
+export * from './clsx';
+export * from './lazyComponentLoader';
