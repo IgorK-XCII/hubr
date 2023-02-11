@@ -8,5 +8,5 @@ export function clsx(cls: string[] = [], mods: Mods = {}): string {
 
       return acc;
     }, []),
-  ].join(" ");
+  ].join(' ');
 }

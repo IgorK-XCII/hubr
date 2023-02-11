@@ -1,4 +1,4 @@
 export enum APP_ROUTES {
-  MAIN = "main",
-  ABOUT = "about",
+  MAIN = 'main',
+  ABOUT = 'about',
 }
