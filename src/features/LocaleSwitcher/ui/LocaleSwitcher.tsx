@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { clsx } from '@/shared/lib';
 import { Button } from '@/shared/ui';
-import cls from './LocaleSwitcher.module.scss';
 
 interface LocaleSwitcherProps {
   className?: string;
@@ -17,7 +16,7 @@ export const LocaleSwitcher: FC<LocaleSwitcherProps> = ({ className }) => {
     <Button
       theme="clear"
       onClick={handleToggle}
-      className={clsx([cls.localeSwitcher, className])}
+      className={clsx([className])}
     >
       {t('language')}
     </Button>

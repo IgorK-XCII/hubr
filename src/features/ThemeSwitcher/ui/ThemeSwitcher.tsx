@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { clsx } from '@/shared/lib';
 import { useTheme, THEME } from '@/shared/providers/ThemeProvider';
-import cls from './ThemeSwitcher.module.scss';
 import ThemeLightIcon from '@/shared/assets/icons/theme-light.svg';
 import ThemeDarkIcon from '@/shared/assets/icons/theme-dark.svg';
 import { Button } from '@/shared/ui';
@@ -15,7 +14,7 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
 
   return (
     <Button
-      className={clsx([cls.themeSwitcher, className])}
+      className={clsx([className])}
       onClick={toggleTheme}
     >
       {theme === THEME.DARK ? <ThemeDarkIcon /> : <ThemeLightIcon />}
