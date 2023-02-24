@@ -10,7 +10,6 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:i18next/recommended',
   ],
-  overrides: [],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -33,4 +32,12 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'react/prop-types': 'off',
   },
+  overrides: [
+    {
+      files: ['**/src/**/*.test.{ts,tsx}'],
+      rules: {
+        'i18next/no-literal-string': 'off',
+      },
+    },
+  ],
 };
