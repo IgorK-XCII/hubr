@@ -3,6 +3,7 @@ import { LocaleSwitcher } from '@/features/LocaleSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { clsx } from '@/shared/lib';
 import cls from './Sidebar.module.scss';
+import { Button } from '@/shared/ui';
 
 interface SidebarProps {
   className?: string;
@@ -15,11 +16,18 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
 
   return (
     <div
+      data-testid="sidebar"
       className={clsx([cls.sidebar, className], {
         [cls.collapsed]: collapsed,
       })}
     >
-      <button type="button" onClick={onToggle}>toggle</button>
+      <Button
+        data-testid="sidebar-toggle"
+        type="button"
+        onClick={onToggle}
+      >
+        toggle
+      </Button>
       <div className={cls.switchers}>
         <ThemeSwitcher />
         <LocaleSwitcher />
