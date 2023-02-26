@@ -1,4 +1,4 @@
 export * from './Navbar';
-export * from './SIdebar';
-export * from './Pageloader';
+export * from './Sidebar';
+export * from './PageLoader';
 export * from './PageError';
