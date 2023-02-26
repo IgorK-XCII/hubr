@@ -1,7 +1,6 @@
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 import { Configuration, RuleSetRule } from 'webpack';
 import { buildCssLoader, buildSvgLoader } from '../build/loaders';
-import { buildDefinePlugin } from '../build/plugins';
 
 export default ({ config }: { config: Configuration }) => {
   // eslint-disable-next-line no-param-reassign
@@ -20,8 +19,6 @@ export default ({ config }: { config: Configuration }) => {
   });
 
   config.module.rules.push(buildSvgLoader(), buildCssLoader(true));
-
-  config.plugins.push(buildDefinePlugin(true));
 
   return config;
 };
