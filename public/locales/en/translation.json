@@ -4,5 +4,7 @@
   "language": "English",
   "notFound": "Page not found",
   "pageError": "Oops something went wrong",
-  "reloadPage": "Reload page"
+  "reloadPage": "Reload page",
+  "mainPage": "Main page",
+  "aboutPage": "About site"
 }
