@@ -1,7 +1,8 @@
 {
   "test": "test",
   "main": "Main page",
-  "language": "English",
+  "full-lang": "English",
+  "short-lang": "EN",
   "notFound": "Page not found",
   "pageError": "Oops something went wrong",
   "reloadPage": "Reload page",

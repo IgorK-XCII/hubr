@@ -4,7 +4,10 @@ import { LocaleSwitcher } from '@/features/LocaleSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { clsx } from '@/shared/lib';
 import cls from './Sidebar.module.scss';
-import { Button } from '@/shared/ui';
+import { AppLink, Button } from '@/shared/ui';
+import { RouterPaths } from '@/shared/config';
+import AboutIcon from '@/shared/assets/icons/about.svg';
+import MainIcon from '@/shared/assets/icons/main.svg';
 
 interface SidebarProps {
   className?: string;
@@ -27,12 +30,30 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
         data-testid="sidebar-toggle"
         type="button"
         onClick={onToggle}
+        className={cls.collapseBtn}
+        theme="background-inverted"
+        square
+        size="l"
       >
-        {t('toggle')}
+        {collapsed ? '>' : '<'}
       </Button>
+      <div className={cls.links}>
+        <AppLink className={cls.link} theme="secondary" to={RouterPaths.main}>
+          <MainIcon />
+          <span>
+            {t('mainPage')}
+          </span>
+        </AppLink>
+        <AppLink className={cls.link} theme="secondary" to={RouterPaths.about}>
+          <AboutIcon />
+          <span>
+            {t('aboutPage')}
+          </span>
+        </AppLink>
+      </div>
       <div className={cls.switchers}>
         <ThemeSwitcher />
-        <LocaleSwitcher />
+        <LocaleSwitcher short={collapsed} />
       </div>
     </div>
   );

@@ -5,12 +5,19 @@ import { Button } from '@/shared/ui';
 
 interface LocaleSwitcherProps {
   className?: string;
+  short?: boolean;
 }
 
-export const LocaleSwitcher: FC<LocaleSwitcherProps> = ({ className }) => {
+export const LocaleSwitcher: FC<LocaleSwitcherProps> = ({ className, short }) => {
   const { i18n, t } = useTranslation();
 
-  const handleToggle = async () => i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
+  const handleToggle = () => i18n.changeLanguage(
+    i18n.language === 'ru'
+      ? 'en'
+      : 'ru',
+  );
+
+  const title = short ? 'short-lang' : 'full-lang';
 
   return (
     <Button
@@ -18,7 +25,7 @@ export const LocaleSwitcher: FC<LocaleSwitcherProps> = ({ className }) => {
       onClick={handleToggle}
       className={clsx([className])}
     >
-      {t('language')}
+      {t(title)}
     </Button>
   );
 };

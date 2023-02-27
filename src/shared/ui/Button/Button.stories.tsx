@@ -7,23 +7,40 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
+  args: {
+    children: 'Text',
+  },
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  children: 'Text',
 };
 
-export const Clear = Template.bind({});
-Clear.args = {
-  children: 'Text',
+export const ClearTheme = Template.bind({});
+ClearTheme.args = {
   theme: 'clear',
 };
 
-export const Outlined = Template.bind({});
-Outlined.args = {
-  children: 'Text',
+export const OutlinedTheme = Template.bind({});
+OutlinedTheme.args = {
   theme: 'outline',
+};
+
+export const BackgroundTheme = Template.bind({});
+BackgroundTheme.args = {
+  theme: 'background',
+};
+
+export const BackgroundInvertedTheme = Template.bind({});
+BackgroundInvertedTheme.args = {
+  theme: 'background-inverted',
+};
+
+export const Square = Template.bind({});
+Square.args = {
+  children: '>',
+  square: true,
+  theme: 'background-inverted',
 };
