@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, FC } from 'react';
 import { clsx } from '@/shared/lib';
 import cls from './Button.module.scss';
 
-type ThemeButton = 'clear' | 'outline' | 'background' | 'background-inverted';
+type ThemeButton = 'clear' | 'clear-inverted' | 'outline' | 'background' | 'background-inverted';
 
 const ButtonSize = {
   m: 'size_m',

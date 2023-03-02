@@ -23,6 +23,11 @@ ClearTheme.args = {
   theme: 'clear',
 };
 
+export const ClearInvertedTheme = Template.bind({});
+ClearTheme.args = {
+  theme: 'clear-inverted',
+};
+
 export const OutlinedTheme = Template.bind({});
 OutlinedTheme.args = {
   theme: 'outline',

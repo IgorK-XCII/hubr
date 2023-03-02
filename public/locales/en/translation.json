@@ -7,5 +7,6 @@
   "pageError": "Oops something went wrong",
   "reloadPage": "Reload page",
   "mainPage": "Main page",
-  "aboutPage": "About site"
+  "aboutPage": "About site",
+  "login": "Login"
 }

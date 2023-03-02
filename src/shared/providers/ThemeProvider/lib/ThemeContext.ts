@@ -9,6 +9,7 @@ export enum THEME {
 const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as THEME) || THEME.LIGHT;
 
 export const themeContextManager = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [theme, setTheme] = useState<THEME>(defaultTheme);
 
   return {
