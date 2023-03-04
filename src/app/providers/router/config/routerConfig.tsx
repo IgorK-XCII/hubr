@@ -1,6 +1,6 @@
 import { RouteProps } from 'react-router-dom';
 import { AboutPage, MainPage, NotFoundPageLazy } from '@/pages';
-import { RouterPaths } from '@/shared/config';
+import { RouterPaths } from '@/shared/config/router';
 import { APP_ROUTES } from '@/shared/config/router/appRoutes';
 
 export const routerConfig: Record<APP_ROUTES, RouteProps> = {

@@ -5,7 +5,7 @@ import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { clsx } from '@/shared/lib';
 import cls from './Sidebar.module.scss';
 import { AppLink, Button } from '@/shared/ui';
-import { RouterPaths } from '@/shared/config';
+import { RouterPaths } from '@/shared/config/router';
 import AboutIcon from '@/shared/assets/icons/about.svg';
 import MainIcon from '@/shared/assets/icons/main.svg';
 
