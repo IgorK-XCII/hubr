@@ -8,7 +8,8 @@ import { Portal } from '../Portal';
 interface ModalProps {
  className?: string;
  isOpen?: boolean;
- onCLose?: () => void;
+ onClose?: () => void;
+ lazy?: boolean;
 }
 
 const ANIMATION_DELAY = 300;
@@ -17,26 +18,40 @@ export const Modal: FC<ModalProps> = ({
   className,
   children,
   isOpen,
-  onCLose,
+  onClose,
+  lazy,
 }) => {
   const [isClosing, setIsClosing] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
   const timerRef = useRef<null | NodeJS.Timeout>(null);
 
   const handleClose = useCallback(() => {
-    if (onCLose) {
+    if (onClose) {
       setIsClosing(true);
       timerRef.current = setTimeout(() => {
-        onCLose();
+        onClose();
         setIsClosing(false);
       }, ANIMATION_DELAY);
     }
-  }, [onCLose]);
+  }, [onClose]);
 
   const handleContentClick = (e: MouseEvent) => e.stopPropagation();
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') handleClose();
   }, [handleClose]);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (isOpen) {
+      timeoutId = setTimeout(() => setIsOpening(true));
+    }
+
+    return () => {
+      setIsOpening(false);
+      clearTimeout(timeoutId);
+    };
+  }, [isOpen]);
 
   useEffect(() => () => clearTimeout(timerRef.current), []);
 
@@ -51,14 +66,16 @@ export const Modal: FC<ModalProps> = ({
   }, [isOpen, handleKeyDown]);
 
   const mods = {
-    [cls.opened]: isOpen,
+    [cls.opened]: isOpening,
     [cls.closing]: isClosing,
   };
+
+  if (lazy && !isOpen) return null;
 
   return (
     <Portal>
       <div className={clsx([cls.modal, className], mods)}>
-        <div role="banner" className={cls.overlay} onClick={handleClose} onKeyDown={onCLose}>
+        <div role="banner" className={cls.overlay} onClick={handleClose}>
           <div className={cls.content} onClick={handleContentClick}>{children}</div>
         </div>
       </div>
