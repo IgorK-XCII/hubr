@@ -1,2 +1,2 @@
-export { Counter } from './ui';
 export { counterActions, counterReducer, CounterSchema } from './model';
+export { Counter } from './ui';
