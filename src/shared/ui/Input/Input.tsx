@@ -1,5 +1,5 @@
 import {
-  FC, InputHTMLAttributes, LegacyRef, memo, SyntheticEvent, useEffect, useRef, useState,
+  FC, InputHTMLAttributes, memo, SyntheticEvent, useEffect, useRef, useState,
 } from 'react';
 import { clsx } from '@/shared/lib';
 import cls from './Input.module.scss';
