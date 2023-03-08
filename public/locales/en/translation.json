@@ -8,5 +8,6 @@
   "reloadPage": "Reload page",
   "mainPage": "Main page",
   "aboutPage": "About site",
-  "login": "Login"
+  "login": "Login",
+  "login error": "Incorrect login or password"
 }

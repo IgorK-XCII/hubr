@@ -17,12 +17,6 @@ server.use(async (req, res, next) => {
   next();
 });
 
-server.use((req, res, next) => {
-  if (!req.headers.authorization) return res.status(403).json({ message: 'AUTH ERROR' });
-
-  next();
-});
-
 server.post('/login', (req, res) => {
   const { username, password } = req.body;
   const db = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
@@ -35,6 +29,12 @@ server.post('/login', (req, res) => {
   if (userFromBd) return res.json(userFromBd);
 
   return res.status(403).json({ message: 'user not found' });
+});
+
+server.use((req, res, next) => {
+  if (!req.headers.authorization) return res.status(403).json({ message: 'AUTH ERROR' });
+
+  next();
 });
 
 server.use(router);

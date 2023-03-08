@@ -42,15 +42,9 @@ export const Modal: FC<ModalProps> = ({
   }, [handleClose]);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    if (isOpen) {
-      timeoutId = setTimeout(() => setIsOpening(true));
-    }
+    if (isOpen) setIsOpening(true);
 
-    return () => {
-      setIsOpening(false);
-      clearTimeout(timeoutId);
-    };
+    return () => setIsOpening(false);
   }, [isOpen]);
 
   useEffect(() => () => clearTimeout(timerRef.current), []);

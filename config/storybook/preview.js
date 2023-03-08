@@ -1,5 +1,7 @@
 import { addDecorator } from '@storybook/react';
-import { RouterDecorator, StyleDecorator, SuspenceDecorator } from '@/shared/config/storybook';
+import {
+  RouterDecorator, StyleDecorator, SuspenceDecorator,
+} from '@/shared/config/storybook';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -19,6 +21,6 @@ export const parameters = {
   },
 };
 
+addDecorator(SuspenceDecorator);
 addDecorator(StyleDecorator);
 addDecorator(RouterDecorator);
-addDecorator(SuspenceDecorator);

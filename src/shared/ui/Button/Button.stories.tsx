@@ -49,3 +49,8 @@ Square.args = {
   square: true,
   theme: 'background-inverted',
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+};

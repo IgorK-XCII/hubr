@@ -12,6 +12,6 @@ interface LoginModalProps {
 
 export const LoginModal: FC<LoginModalProps> = ({ className, ...props }) => (
   <Modal className={clsx([cls.LoginModal, className])} lazy {...props}>
-    <LoginForm />
+    <LoginForm onClose={props.onClose} />
   </Modal>
 );

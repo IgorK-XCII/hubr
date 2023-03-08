@@ -1,9 +1,12 @@
 import { FC, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { clsx } from '@/shared/lib';
 import cls from './Navbar.module.scss';
 import { Button } from '@/shared/ui';
 import { LoginModal } from '@/features/AuthByUsername';
+import { getUserAuthData, userActions } from '@/entities';
+import { useAppDispatch } from '@/app/providers';
 
 interface NavbarProps {
   className?: string;
@@ -12,9 +15,25 @@ interface NavbarProps {
 export const Navbar: FC<NavbarProps> = ({ className }) => {
   const { t } = useTranslation();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const authData = useSelector(getUserAuthData);
+  const dispatch = useAppDispatch();
 
   const handleOpenAuthModal = () => setIsAuthModalOpen(true);
   const handleCloseAuthModal = useCallback(() => setIsAuthModalOpen(false), []);
+
+  const handleLogout = () => dispatch(userActions.logout());
+
+  if (authData) {
+    return (
+      <div className={clsx([cls.navbar, className])}>
+        <div className={clsx([cls.links])}>
+          <Button theme="clear-inverted" onClick={handleLogout}>
+            {t('logout')}
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={clsx([cls.navbar, className])}>
