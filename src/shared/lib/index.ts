@@ -1,4 +1,4 @@
 export * from './clsx';
 export * from './lazyComponentLoader';
-export * from './useLazyStoreSliceLoader';
+export * from './useLazyReducersLoader';
 export * from './getObjectEntries';

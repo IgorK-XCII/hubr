@@ -8,7 +8,7 @@ import { getObjectKeys } from '../getObjectKeys';
 
 export type LazyReducers = Partial<RootReducer>;
 
-export const useLazyStoreSliceLoader = (
+export const useLazyReducersLoader = (
   reducers: LazyReducers,
   removeAfterUnmount = true,
 ) => {

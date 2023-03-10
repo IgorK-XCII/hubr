@@ -4,14 +4,15 @@ import { userReducer } from '@/entities/User';
 import { RootState, StoreWithManager } from '../types/RootState';
 import { authMiddleware } from '../middleware';
 import { createReducerManager } from './reducerManager';
+import { LazyReducers } from '@/shared/lib';
 
 export const rootReducer: ReducersMapObject<RootState> = {
   counter: counterReducer,
   user: userReducer,
 };
 
-export const createReduxStore = (initialState: RootState) => {
-  const reducerManager = createReducerManager(rootReducer);
+export const createReduxStore = (initialState: RootState, lazyReducers: LazyReducers) => {
+  const reducerManager = createReducerManager({ ...lazyReducers, ...rootReducer });
 
   const store = configureStore({
     reducer: reducerManager.reduce,

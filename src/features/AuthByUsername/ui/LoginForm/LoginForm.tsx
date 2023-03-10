@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { clsx, LazyReducers, useLazyStoreSliceLoader } from '@/shared/lib';
+import { clsx, LazyReducers, useLazyReducersLoader } from '@/shared/lib';
 import cls from './LoginForm.module.scss';
 import { Button, Input, Text } from '@/shared/ui';
 import { useAppDispatch, useAppSelector } from '@/app/providers';
@@ -23,7 +23,7 @@ const initialReducers: LazyReducers = {
 
 export const LoginForm: FC<LoginFormProps> = memo(({ className, onClose }) => {
   const { t } = useTranslation();
-  useLazyStoreSliceLoader(initialReducers);
+  useLazyReducersLoader(initialReducers);
   const dispatch = useAppDispatch();
 
   const username = useAppSelector(getLoginUsername);
