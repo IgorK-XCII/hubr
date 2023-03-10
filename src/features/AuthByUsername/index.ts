@@ -1,2 +1,2 @@
-export { loginReducer, loginByUsername } from './model';
+export { loginByUsername, LoginSchema } from './model';
 export { LoginModal } from './ui';

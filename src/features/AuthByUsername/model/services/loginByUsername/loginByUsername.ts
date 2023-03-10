@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { User, userActions } from '@/entities';
 import { LoginSchema } from '../../types';
-import { i18n } from '@/shared/config/i18n';
 
 type LoginByUsernameProps = Pick<LoginSchema, 'password' | 'username'>
 

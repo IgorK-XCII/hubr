@@ -3,6 +3,7 @@ export {
   getUserAuthData,
   userActions,
   userReducer,
+  UserSchema,
 } from './model';
 
 export {

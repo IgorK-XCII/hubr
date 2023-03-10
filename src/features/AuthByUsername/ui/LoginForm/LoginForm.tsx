@@ -1,22 +1,35 @@
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { clsx } from '@/shared/lib';
+import { clsx, LazyReducers, useLazyStoreSliceLoader } from '@/shared/lib';
 import cls from './LoginForm.module.scss';
 import { Button, Input, Text } from '@/shared/ui';
 import { useAppDispatch, useAppSelector } from '@/app/providers';
-import { getLoginState, loginActions, loginByUsername } from '../../model';
+import {
+  getLoginError,
+  getLoginIsLoading,
+  getLoginPassword,
+  getLoginUsername, loginByUsername,
+} from '../../model';
+import { loginActions, loginReducer } from '../../model/slice';
 
 interface LoginFormProps {
  className?: string;
  onClose: () => void;
 }
 
+const initialReducers: LazyReducers = {
+  login: loginReducer,
+};
+
 export const LoginForm: FC<LoginFormProps> = memo(({ className, onClose }) => {
   const { t } = useTranslation();
+  useLazyStoreSliceLoader(initialReducers);
   const dispatch = useAppDispatch();
-  const {
-    username, password, isLoading, error,
-  } = useAppSelector(getLoginState);
+
+  const username = useAppSelector(getLoginUsername);
+  const password = useAppSelector(getLoginPassword);
+  const isLoading = useAppSelector(getLoginIsLoading);
+  const error = useAppSelector(getLoginError);
 
   const handleChangeUsername = (value: string) => dispatch(
     loginActions.setUsername(value),
