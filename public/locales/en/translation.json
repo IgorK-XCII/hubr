@@ -9,5 +9,6 @@
   "mainPage": "Main page",
   "aboutPage": "About site",
   "login": "Login",
-  "login error": "Incorrect login or password"
+  "login error": "Incorrect login or password",
+  "profilePage": "Profile"
 }

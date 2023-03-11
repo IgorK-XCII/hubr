@@ -1,9 +1,10 @@
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { clsx, LazyReducers, useLazyReducersLoader } from '@/shared/lib';
+import {
+  clsx, LazyReducers, useAppDispatch, useAppSelector, useLazyReducersLoader,
+} from '@/shared/lib';
 import cls from './LoginForm.module.scss';
 import { Button, Input, Text } from '@/shared/ui';
-import { useAppDispatch, useAppSelector } from '@/app/providers';
 import {
   getLoginError,
   getLoginIsLoading,

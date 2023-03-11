@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/shared/ui';
 import { counterActions, getCounterValue } from '../model';
-import { useAppDispatch, useAppSelector } from '@/app/providers';
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
 
 export const Counter: FC = () => {
   const { t } = useTranslation();
