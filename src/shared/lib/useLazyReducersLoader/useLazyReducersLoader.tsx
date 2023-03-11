@@ -26,9 +26,9 @@ export const useLazyReducersLoader = (
       alreadyMounted.current = true;
     }
 
-    return () => {
-      if (!removeAfterUnmount) return;
+    if (!removeAfterUnmount) return;
 
+    return () => {
       getObjectKeys(reducers).forEach((key) => {
         store.reducerManager.remove(key);
         dispatch({ type: `@DESTROY ${key}` });

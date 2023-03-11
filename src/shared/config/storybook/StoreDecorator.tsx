@@ -9,7 +9,10 @@ const defaultLazyReducers: LazyReducers = {
 };
 
 export const StoreDecorator = (state: DeepPartial<RootState>) => (StoryComponent: Story) => (
-  <StoreProvider initialState={state as RootState} lazyReducers={defaultLazyReducers}>
+  <StoreProvider
+    initialState={state as RootState}
+    lazyReducers={defaultLazyReducers}
+  >
     <StoryComponent />
   </StoreProvider>
 );
