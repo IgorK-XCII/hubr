@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  clsx, LazyReducers, useAppDispatch, useAppSelector, useLazyReducersLoader,
+  clsx, useAppDispatch, useAppSelector, useLazyReducersLoader,
 } from '@/shared/lib';
 import cls from './LoginForm.module.scss';
 import { Button, Input, Text } from '@/shared/ui';
@@ -12,6 +12,7 @@ import {
   getLoginUsername, loginByUsername,
 } from '../../model';
 import { loginActions, loginReducer } from '../../model/slice';
+import { LazyReducers } from '@/app/providers';
 
 interface LoginFormProps {
  className?: string;

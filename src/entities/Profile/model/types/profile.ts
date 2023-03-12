@@ -15,5 +15,5 @@ export interface ProfileSchema {
   data: Profile | null;
   isLoading: boolean;
   error: string | null;
-  readonly: boolean;
+  isReadonly: boolean;
 }

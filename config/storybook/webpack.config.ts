@@ -4,27 +4,31 @@ import { buildCssLoader, buildSvgLoader } from '../build/loaders';
 import { buildDefinePlugin } from '../build/plugins';
 
 export default ({ config }: { config: Configuration }) => {
-  // eslint-disable-next-line no-param-reassign
-  if (!config.resolve.plugins) config.resolve.plugins = [];
+  if (config.resolve) {
+    if (!config.resolve.plugins) config.resolve.plugins = [];
 
-  config.resolve.plugins.push(new TsconfigPathsPlugin());
-  config.resolve.extensions.push('ts', 'tsx');
-  config.resolve.fallback = {
-    http: false,
-  };
+    config.resolve.plugins.push(new TsconfigPathsPlugin());
+    config.resolve.extensions?.push('ts', 'tsx');
+    config.resolve.fallback = {
+      http: false,
+    };
+  }
 
-  // eslint-disable-next-line no-param-reassign
-  config.module.rules = config.module.rules.map((rule: RuleSetRule) => {
-    if (/svg/.test(rule.test as string)) {
-      return { ...rule, exclude: /\.svg$/i };
-    }
+  if (config.module) {
+    config.module.rules = config.module.rules?.map((rule) => {
+      const _rule = rule as RuleSetRule;
 
-    return rule;
-  });
+      if (/svg/.test(_rule.test as string)) {
+        return { ..._rule, exclude: /\.svg$/i };
+      }
 
-  config.module.rules.push(buildSvgLoader(), buildCssLoader(true));
+      return rule;
+    });
 
-  config.plugins.push(buildDefinePlugin(true));
+    config.module.rules?.push(buildSvgLoader(), buildCssLoader(true));
+  }
+
+  config.plugins?.push(buildDefinePlugin(true, ''));
 
   return config;
 };

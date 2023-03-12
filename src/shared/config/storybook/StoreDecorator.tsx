@@ -1,7 +1,5 @@
-import { DeepPartial } from '@reduxjs/toolkit';
 import { Story } from '@storybook/react';
-import { RootState, StoreProvider } from '@/app/providers';
-import { LazyReducers } from '@/shared/lib';
+import { LazyReducers, RootState, StoreProvider } from '@/app/providers';
 import { loginReducer } from '@/features/AuthByUsername/model/slice';
 import { profileReducer } from '@/entities';
 

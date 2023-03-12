@@ -23,7 +23,7 @@ export const Modal: FC<ModalProps> = ({
 }) => {
   const [isClosing, setIsClosing] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
-  const timerRef = useRef<null | NodeJS.Timeout>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleClose = useCallback(() => {
     if (onClose) {
@@ -47,7 +47,11 @@ export const Modal: FC<ModalProps> = ({
     return () => setIsOpening(false);
   }, [isOpen]);
 
-  useEffect(() => () => clearTimeout(timerRef.current), []);
+  useEffect(() => () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;

@@ -2,7 +2,6 @@ import { render } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
-import { DeepPartial } from '@reduxjs/toolkit';
 import { i18nForTest } from '@/shared/config/i18n/i18nForTests';
 import { RootState, StoreProvider } from '@/app/providers';
 

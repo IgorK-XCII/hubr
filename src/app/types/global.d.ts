@@ -17,3 +17,22 @@ declare module '*.svg' {
 }
 
 declare const __IS_DEV__: boolean;
+declare const __API__: string;
+
+type DeepPartial<T> = T extends object ? {
+  [P in keyof T]?: DeepPartial<T[P]>;
+} : T;
+
+type Tuple<T extends unknown[] = unknown[]> = Readonly<T>;
+
+type ValueOf<T> = T extends object
+  ? T[keyof T] : T extends Tuple
+  ? T[number] : never
+
+type ExtractOptionalKeys<T extends object> = Exclude<{
+  [K in keyof T]: T extends Record<K, T[K]>
+    ? never
+    : K
+}[keyof T], undefined>
+
+type PickOptionalProperty<T extends object> = Pick<T, ExtractOptionalKeys<T>>

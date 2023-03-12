@@ -1,7 +1,7 @@
 import { ComponentType, lazy } from 'react';
 
 export const lazyComponentLoader = <
-  T extends Record<string, ComponentType<unknown>>,
+  T extends Record<string, ComponentType<any>>,
   C extends keyof T
   >(
     getFile: () => Promise<T>,

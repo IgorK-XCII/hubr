@@ -22,19 +22,15 @@ export function createReducerManager(initialReducers: ReducersMapObject<RootStat
 
       return combinedReducer(state, action);
     },
-    add: (key: RootStateKey, reducer: Reducer) => {
-      if (!key || reducers[key]) {
-        return;
-      }
+    add: (key: RootStateKey, reducer: Reducer | undefined) => {
+      if (!key || !reducer || reducers[key]) return;
 
       reducers[key] = reducer;
 
       combinedReducer = combineReducers(reducers);
     },
     remove: (key: RootStateKey) => {
-      if (!key || !reducers[key]) {
-        return;
-      }
+      if (!key || !reducers[key]) return;
 
       delete reducers[key];
       keysToRemove.push(key);

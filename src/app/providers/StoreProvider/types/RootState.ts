@@ -11,6 +11,7 @@ export type RootState = {
 }
 
 export type RootStateKey = keyof RootState;
+export type RootStateLazyReducerKey = ExtractOptionalKeys<RootState>
 
 export interface StoreWithManager extends EnhancedStore<RootState> {
   reducerManager: ReturnType<typeof createReducerManager>

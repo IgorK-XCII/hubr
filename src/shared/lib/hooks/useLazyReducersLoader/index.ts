@@ -1,1 +1,1 @@
-export { useLazyReducersLoader, LazyReducers } from './useLazyReducersLoader';
+export { useLazyReducersLoader } from './useLazyReducersLoader';

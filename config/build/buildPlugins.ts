@@ -7,9 +7,11 @@ import { BuildOptions } from './types/config';
 import { buildDefinePlugin } from './plugins';
 
 export function buildPlugins(options: BuildOptions): WebpackPluginInstance[] {
-  const { paths, isDev, analyze } = options;
+  const {
+    paths, isDev, analyze, apiUrl,
+  } = options;
 
-  return [
+  const plugins: WebpackPluginInstance[] = [
     new ProgressPlugin(),
     new HtmlWebpackPlugin({
       template: paths.html,
@@ -18,8 +20,12 @@ export function buildPlugins(options: BuildOptions): WebpackPluginInstance[] {
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[contenthash:8].css',
     }),
-    buildDefinePlugin(isDev),
-    isDev && new ReactRefreshWebpackPlugin(),
-    analyze && new BundleAnalyzerPlugin(),
-  ].filter(Boolean);
+    buildDefinePlugin(isDev, apiUrl),
+  ];
+
+  if (isDev) plugins.push(new ReactRefreshWebpackPlugin());
+
+  if (analyze) plugins.push(new BundleAnalyzerPlugin());
+
+  return plugins;
 }

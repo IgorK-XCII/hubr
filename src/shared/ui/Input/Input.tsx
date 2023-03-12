@@ -16,7 +16,7 @@ export const Input: FC<InputProps> = memo(({
   className, value, onChange, type = 'text', placeholder, autoFocus, ...restProps
 }) => {
   const [caretPosition, setCaretPosition] = useState(0);
-  const ref = useRef<HTMLInputElement>(null);
+  const ref = useRef<HTMLInputElement | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
@@ -26,11 +26,11 @@ export const Input: FC<InputProps> = memo(({
   };
 
   const handleSelect = (e: SyntheticEvent<HTMLInputElement, Event>) => {
-    setCaretPosition(e.currentTarget.selectionStart);
+    setCaretPosition(e.currentTarget.selectionStart || 0);
   };
 
   useEffect(() => {
-    if (autoFocus) ref.current.focus();
+    if (autoFocus) ref.current?.focus();
   }, [autoFocus]);
 
   return (
