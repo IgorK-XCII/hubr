@@ -12,11 +12,11 @@ export function createReducerManager(initialReducers: ReducersMapObject<RootStat
 
   return {
     getReducerMap: () => reducers,
-    reduce: (state: RootState, action: AnyAction) => {
-      if (keysToRemove.length) {
+    reduce: (state: RootState | undefined, action: AnyAction) => {
+      if (keysToRemove.length && state) {
         state = { ...state };
 
-        keysToRemove.forEach((key) => delete state[key]);
+        keysToRemove.forEach((key) => delete state?.[key]);
         keysToRemove = [];
       }
 
