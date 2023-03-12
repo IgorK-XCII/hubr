@@ -6,7 +6,7 @@ import { RootState } from '../types/RootState';
 
 interface StoreProviderProps {
   initialState?: RootState;
-  lazyReducers?: LazyReducers
+  lazyReducers?: LazyReducers;
 }
 
 export const StoreProvider: FC<StoreProviderProps> = ({ children, initialState, lazyReducers }) => {

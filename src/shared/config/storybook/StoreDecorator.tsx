@@ -3,9 +3,11 @@ import { Story } from '@storybook/react';
 import { RootState, StoreProvider } from '@/app/providers';
 import { LazyReducers } from '@/shared/lib';
 import { loginReducer } from '@/features/AuthByUsername/model/slice';
+import { profileReducer } from '@/entities';
 
 const defaultLazyReducers: LazyReducers = {
   login: loginReducer,
+  profile: profileReducer,
 };
 
 export const StoreDecorator = (state: DeepPartial<RootState>) => (StoryComponent: Story) => (

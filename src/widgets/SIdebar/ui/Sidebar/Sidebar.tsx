@@ -1,5 +1,4 @@
 import { FC, memo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { LocaleSwitcher } from '@/features/LocaleSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { clsx } from '@/shared/lib';
@@ -14,7 +13,6 @@ interface SidebarProps {
 
 export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const { t } = useTranslation();
 
   const onToggle = () => setCollapsed((prev) => !prev);
 
