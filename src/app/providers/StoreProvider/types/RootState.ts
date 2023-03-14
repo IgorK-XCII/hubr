@@ -1,7 +1,8 @@
 import { EnhancedStore } from '@reduxjs/toolkit';
-import { CounterSchema, ProfileSchema, UserSchema } from '@/entities';
+import { CounterSchema, UserSchema } from '@/entities';
 import { LoginSchema } from '@/features/AuthByUsername';
 import { createReducerManager } from '../config/reducerManager';
+import { ProfileSchema } from '@/features/EditableProfileCard';
 
 export type RootState = {
   counter: CounterSchema,

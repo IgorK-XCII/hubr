@@ -1,4 +1,4 @@
 export {
-  Profile, ProfileSchema, profileActions, profileReducer, fetchProfileData,
+  Profile,
 } from './model';
-export { ProfileCard } from './ui';
+export { ProfileCard, ProfileCardProps } from './ui';

@@ -1,35 +1,90 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import {
-  Button, Input, Text,
+  Input, Loader, Text,
 } from '@/shared/ui';
 import { clsx } from '@/shared/lib';
-import { getProfileData, getProfileError, getProfileIsLoading } from '../../model';
 import cls from './ProfileCard.module.scss';
+import { Profile } from '../../model';
 
-interface ProfileCardProps {
+export interface ProfileCardProps {
   className?: string;
+  data: Profile | null;
+  error?: string;
+  isLoading?: boolean;
+  isReadonly?: boolean;
+  onChangeFirstName?: (value: string) => void;
+  onChangeLastName?: (value: string) => void;
+  onChangeAge?: (value: string) => void;
+  onChangeCity?: (value: string) => void;
 }
 
-export const ProfileCard: FC<ProfileCardProps> = ({ className }) => {
+export const ProfileCard: FC<ProfileCardProps> = ({
+  className,
+  data,
+  error,
+  isLoading,
+  isReadonly,
+  onChangeFirstName,
+  onChangeLastName,
+  onChangeAge,
+  onChangeCity,
+}) => {
   const { t } = useTranslation('profile');
 
-  const profile = useSelector(getProfileData);
-  const error = useSelector(getProfileError);
-  const isLoading = useSelector(getProfileIsLoading);
+  const {
+    firstname, lastname, age, city,
+  } = data ?? {};
+
+  if (isLoading) {
+    return (
+      <div className={clsx([cls.profilecard, className, cls.loading])}>
+        <Loader />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={clsx([cls.profilecard, className, cls.error])}>
+        <Text
+          title={t('errorTitle')}
+          text={t('errorDescription')}
+          align="center"
+          theme="error"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={clsx([cls.profilecard, className])}>
-      <div className={cls.header}>
-        <Text title={t('profile')} />
-        <Button theme="outline" className={cls.editBtn}>
-          {t('edit')}
-        </Button>
-      </div>
       <div className={cls.profileData}>
-        <Input placeholder={t('firstname')} value={profile?.firstname} />
-        <Input placeholder={t('lastname')} value={profile?.lastname} />
+        <Input
+          placeholder={t('firstname')}
+          value={firstname}
+          readOnly={isReadonly}
+          onChange={onChangeFirstName}
+        />
+        <Input
+          placeholder={t('lastname')}
+          value={lastname}
+          readOnly={isReadonly}
+          onChange={onChangeLastName}
+        />
+        <Input
+          placeholder={t('age')}
+          value={age}
+          readOnly={isReadonly}
+          onChange={onChangeAge}
+          type="number"
+        />
+        <Input
+          placeholder={t('city')}
+          value={city}
+          readOnly={isReadonly}
+          onChange={onChangeCity}
+        />
       </div>
     </div>
   );

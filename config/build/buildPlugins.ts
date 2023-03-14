@@ -23,7 +23,11 @@ export function buildPlugins(options: BuildOptions): WebpackPluginInstance[] {
     buildDefinePlugin(isDev, apiUrl),
   ];
 
-  if (isDev) plugins.push(new ReactRefreshWebpackPlugin());
+  if (isDev) {
+    plugins.push(new ReactRefreshWebpackPlugin({
+      overlay: false,
+    }));
+  }
 
   if (analyze) plugins.push(new BundleAnalyzerPlugin());
 

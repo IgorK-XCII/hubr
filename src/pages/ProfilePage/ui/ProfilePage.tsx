@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useLazyReducersLoader } from '@/shared/lib';
-import { profileReducer, fetchProfileData, ProfileCard } from '@/entities';
 import { LazyReducers } from '@/app/providers';
+import { EditableProfileCard, profileReducer, fetchProfileData } from '@/features/EditableProfileCard';
 
 const lazyReducers: LazyReducers = {
   profile: profileReducer,
@@ -9,15 +9,16 @@ const lazyReducers: LazyReducers = {
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch();
-  useLazyReducersLoader(lazyReducers);
 
   useEffect(() => {
     dispatch(fetchProfileData());
   }, [dispatch]);
 
+  useLazyReducersLoader(lazyReducers);
+
   return (
     <div>
-      <ProfileCard />
+      <EditableProfileCard />
     </div>
   );
 };

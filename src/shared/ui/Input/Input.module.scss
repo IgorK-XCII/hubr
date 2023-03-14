@@ -43,6 +43,10 @@
   animation: blink 0.8s forwards infinite;
 }
 
+.readOnly {
+  opacity: 0.7;
+}
+
 @keyframes blink {
   0% {
     opacity: 0;
@@ -55,4 +59,8 @@
   100% {
     opacity: 1;
   }
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
 }

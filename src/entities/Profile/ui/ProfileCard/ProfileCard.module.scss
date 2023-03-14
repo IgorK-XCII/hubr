@@ -3,21 +3,19 @@
   border: 1px solid var(--inverted-bg-color);
 }
 
-.header {
-  display: flex;
-  align-items: center;
-}
-
-.editBtn {
-  margin-left: auto;
-}
-
 .profileData {
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
 
   >:not(:first-child) {
     margin-top: 10px;
   }
+}
+
+.loading,
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
 }
