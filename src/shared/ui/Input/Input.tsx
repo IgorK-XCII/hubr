@@ -1,16 +1,17 @@
 import {
-  FC, InputHTMLAttributes, KeyboardEvent, memo, SyntheticEvent, useEffect, useRef, useState,
+  FC, InputHTMLAttributes, memo, SyntheticEvent, useEffect, useRef, useState,
 } from 'react';
 import { clsx } from '@/shared/lib';
 import cls from './Input.module.scss';
 
-interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'> {
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly' | 'type'> {
  className?: string;
  value?: string | number;
  onChange?: (value: string) => void;
  placeholder?: string;
  autoFocus?: boolean;
  readOnly?: boolean;
+ type?: 'text' | 'number'
 }
 
 export const Input: FC<InputProps> = memo(({
@@ -29,34 +30,14 @@ export const Input: FC<InputProps> = memo(({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
 
+    if (type === 'number' && /[^0-9]+/.test(val)) return;
+
     onChange?.(val);
     setCaretPosition(val.length);
   };
 
   const handleSelect = (e: SyntheticEvent<HTMLInputElement, Event>) => {
-    if (type === 'number') {
-      setCaretPosition(String(value).length || 0);
-      return;
-    }
-
     setCaretPosition(e.currentTarget.selectionStart || 0);
-  };
-
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (type !== 'number') return;
-
-    if (['e', 'E', '+', '-'].includes(e.key)) e.preventDefault();
-
-    if (e.code === 'ArrowRight') {
-      setCaretPosition(
-        (prev) => (prev === String(value).length ? prev : prev + 1),
-      );
-    }
-    if (e.code === 'ArrowLeft') {
-      setCaretPosition(
-        (prev) => (prev ? prev - 1 : prev),
-      );
-    }
   };
 
   useEffect(() => {
@@ -78,13 +59,12 @@ export const Input: FC<InputProps> = memo(({
         <input
           {...restProps}
           ref={ref}
-          type={type}
+          type="text"
           value={value}
           onChange={handleChange}
           onSelect={handleSelect}
           className={cls.input}
           readOnly={readOnly}
-          onKeyDown={handleKeyDown}
         />
         {!readOnly && (
           <span

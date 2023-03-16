@@ -1,6 +1,7 @@
-import { Country, Currency } from '@/shared/const';
+import { Country } from '@/entities/Country';
+import { Currency } from '@/entities/Currency';
 
-export interface Profile {
+export type Profile = Partial<{
   firstname: string;
   lastname: string
   age: number;
@@ -9,4 +10,4 @@ export interface Profile {
   city: string;
   username: string;
   avatar: string;
-}
+}>

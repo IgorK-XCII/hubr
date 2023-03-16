@@ -19,5 +19,6 @@ export const sidebarItemsListConfig: SidebarItemsList = [
     label: 'profilePage',
     Icon: ProfileIcon,
     to: RouterPaths.profile,
+    authOnly: true,
   },
 ];

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { clsx, useAppDispatch, useAppSelector } from '@/shared/lib';
 import cls from './EditableProfileCardHeader.module.scss';
 import { Button, Text } from '@/shared/ui';
-import { getProfileIsReadonly, profileActions } from '../../model';
+import { getProfileIsReadonly, profileActions, updateProfileData } from '../../model';
 
 interface EditableProfileCardHeaderProps {
  className?: string;
@@ -12,16 +12,20 @@ interface EditableProfileCardHeaderProps {
 export const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = ({ className }) => {
   const { t } = useTranslation('profile');
 
-  const reducer = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const isReadonly = useAppSelector(getProfileIsReadonly);
 
-  const handleSetEditMode = () => reducer(
+  const handleSetEditMode = () => dispatch(
     profileActions.setReadOnly(false),
   );
 
-  const handleResetEditMode = () => reducer(
+  const handleResetEditMode = () => dispatch(
     profileActions.cancelEditProfileForm(),
+  );
+
+  const saveFormData = () => dispatch(
+    updateProfileData(),
   );
 
   return (
@@ -47,7 +51,7 @@ export const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = ({ 
           <Button
             theme="outline"
             className={cls.saveBtn}
-            onClick={handleResetEditMode}
+            onClick={saveFormData}
           >
             {t('save')}
           </Button>

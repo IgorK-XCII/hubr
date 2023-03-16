@@ -1,6 +1,6 @@
 import { FC, useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { ProfileCard, ProfileCardProps } from '@/entities';
+import { Country, Currency, ProfileCard } from '@/entities';
 import {
   getProfileError,
   getProfileForm,
@@ -23,23 +23,52 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = ({ className })
   const isLoading = useAppSelector(getProfileIsLoading);
   const isReadonly = useAppSelector(getProfileIsReadonly);
 
-  const handleChangeFirstName: ProfileCardProps['onChangeFirstName'] = useCallback((value) => dispatch(
+  const handleChangeFirstName = useCallback((value: string) => dispatch(
     profileActions.updateProfileForm({ firstname: value }),
   ), [dispatch]);
 
-  const handleChangeLastName: ProfileCardProps['onChangeLastName'] = useCallback((lastname) => dispatch(
+  const handleChangeLastName = useCallback((lastname: string) => dispatch(
     profileActions.updateProfileForm({ lastname }),
   ), [dispatch]);
 
-  const handleChangeAge: ProfileCardProps['onChangeAge'] = useCallback((age) => {
-    dispatch(
-      profileActions.updateProfileForm({ age }),
-    );
-  }, [dispatch]);
+  const handleChangeAge = useCallback(
+    (age: string) => dispatch(
+      profileActions.updateProfileForm({ age: Number(age) }),
+    ),
+    [dispatch],
+  );
 
-  const handleChangeCity: ProfileCardProps['onChangeCity'] = useCallback((city) => dispatch(
+  const handleChangeCity = useCallback((city: string) => dispatch(
     profileActions.updateProfileForm({ city }),
   ), [dispatch]);
+
+  const handleChangeUsername = useCallback(
+    (username: string) => dispatch(profileActions.updateProfileForm({
+      username,
+    })),
+    [dispatch],
+  );
+
+  const handleChangeAvatar = useCallback(
+    (avatar: string) => dispatch(profileActions.updateProfileForm({
+      avatar,
+    })),
+    [dispatch],
+  );
+
+  const handleChangeCurrency = useCallback(
+    (currency: Currency) => dispatch(profileActions.updateProfileForm({
+      currency,
+    })),
+    [dispatch],
+  );
+
+  const handleChangeCountry = useCallback(
+    (country: Country) => dispatch(profileActions.updateProfileForm({
+      country,
+    })),
+    [dispatch],
+  );
 
   return (
     <div className={className}>
@@ -54,6 +83,10 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = ({ className })
         onChangeLastName={handleChangeLastName}
         onChangeAge={handleChangeAge}
         onChangeCity={handleChangeCity}
+        onChangeUsername={handleChangeUsername}
+        onChangeAvatar={handleChangeAvatar}
+        onChangeCurrency={handleChangeCurrency}
+        onChangeCountry={handleChangeCountry}
       />
     </div>
   );

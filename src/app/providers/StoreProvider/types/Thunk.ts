@@ -1,4 +1,5 @@
 import { AxiosInstance } from 'axios';
+import { RootState } from './RootState';
 
 interface ThunkExtra {
   api: AxiosInstance;
@@ -7,4 +8,5 @@ interface ThunkExtra {
 export interface ThunkOptions<T> {
   rejectValue: T;
   extra: ThunkExtra;
+  state: RootState;
 }
