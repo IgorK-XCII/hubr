@@ -27,6 +27,7 @@ const profileSLice = createSlice({
     cancelEditProfileForm(state) {
       state.form = state.data;
       state.isReadonly = true;
+      state.validateProfileError = null;
     },
   },
   extraReducers(builder) {
@@ -46,6 +47,7 @@ const profileSLice = createSlice({
       }).addCase(updateProfileData.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+        state.validateProfileError = null;
       })
       .addCase(updateProfileData.fulfilled, (state, { payload }) => {
         state.data = payload;
@@ -56,7 +58,13 @@ const profileSLice = createSlice({
       .addCase(updateProfileData.rejected, (state, { payload }) => {
         state.isLoading = false;
 
-        if (payload) state.error = payload;
+        if (payload) {
+          if (Array.isArray(payload)) {
+            state.validateProfileError = payload;
+          } else {
+            state.error = payload;
+          }
+        }
       });
   },
 });

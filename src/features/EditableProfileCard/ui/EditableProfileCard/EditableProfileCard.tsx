@@ -1,4 +1,5 @@
 import { FC, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { Country, Currency, ProfileCard } from '@/entities';
 import {
@@ -6,22 +7,33 @@ import {
   getProfileForm,
   getProfileIsLoading,
   getProfileIsReadonly,
+  getProfileValidationErrors,
   profileActions,
+  ValidateProfileError,
 } from '../../model';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader';
 import cls from './EditableProfileCard.module.scss';
+import { Text } from '@/shared/ui';
 
 interface EditableProfileCardProps {
  className?: string;
 }
 
 export const EditableProfileCard: FC<EditableProfileCardProps> = ({ className }) => {
+  const { t } = useTranslation('profile');
   const dispatch = useAppDispatch();
 
   const formData = useAppSelector(getProfileForm);
   const error = useAppSelector(getProfileError);
   const isLoading = useAppSelector(getProfileIsLoading);
   const isReadonly = useAppSelector(getProfileIsReadonly);
+  const validationErrors = useAppSelector(getProfileValidationErrors);
+
+  const validationErrorsTranslates = {
+    [ValidateProfileError.AGE_ERROR]: 'ageError',
+    [ValidateProfileError.NO_DATA_ERROR]: 'noDataError',
+    [ValidateProfileError.USER_DATA_ERROR]: 'userDataError',
+  };
 
   const handleChangeFirstName = useCallback((value: string) => dispatch(
     profileActions.updateProfileForm({ firstname: value }),
@@ -73,6 +85,13 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = ({ className })
   return (
     <div className={className}>
       <EditableProfileCardHeader />
+      {validationErrors?.map((err) => (
+        <Text
+          key={err}
+          text={t(validationErrorsTranslates[err])}
+          theme="error"
+        />
+      ))}
       <ProfileCard
         data={formData}
         error={error}
