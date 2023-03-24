@@ -1,9 +1,11 @@
 import path from 'path';
+import { PROJECT } from '../build/types/config';
 
 export default {
   globals: {
     __IS_DEV__: true,
     __API__: '',
+    __PROJECT__: PROJECT.JEST,
   },
   clearMocks: true,
   testEnvironment: 'jsdom',

@@ -3,7 +3,7 @@ import { Profile } from '@/entities';
 import { fetchProfileData, updateProfileData } from '../services';
 import { ProfileSchema } from '../types';
 
-const initialState: ProfileSchema = {
+export const initialState: ProfileSchema = {
   data: null,
   form: null,
   isLoading: false,

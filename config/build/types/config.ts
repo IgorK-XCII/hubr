@@ -3,6 +3,12 @@ export enum BUILD_MODE {
   DEVELOPMENT = 'development',
 }
 
+export enum PROJECT {
+  STORYBOOK = 'storybook',
+  FRONTEND = 'frontend',
+  JEST = 'jest'
+}
+
 export interface BuildPaths {
   entry: string;
   build: string;
@@ -16,6 +22,7 @@ export interface BuildOptions {
   port: number;
   analyze: boolean;
   apiUrl: string;
+  project: PROJECT
 }
 
 export interface BuildEnv {

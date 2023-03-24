@@ -3,6 +3,7 @@ import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 import { Configuration, RuleSetRule } from 'webpack';
 import { buildCssLoader, buildSvgLoader } from '../build/loaders';
 import { buildDefinePlugin } from '../build/plugins';
+import { PROJECT } from '../build/types/config';
 
 export default ({ config }: { config: Configuration }) => {
   if (!config.resolve!.plugins) config.resolve!.plugins = [];
@@ -25,7 +26,7 @@ export default ({ config }: { config: Configuration }) => {
 
   config.module!.rules?.push(buildSvgLoader(), buildCssLoader(true));
 
-  config.plugins?.push(buildDefinePlugin(true, ''));
+  config.plugins?.push(buildDefinePlugin(true, '', PROJECT.STORYBOOK));
 
   return config;
 };

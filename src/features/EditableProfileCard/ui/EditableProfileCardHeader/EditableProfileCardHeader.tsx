@@ -1,9 +1,13 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { clsx, useAppDispatch, useAppSelector } from '@/shared/lib';
+import {
+  clsx, isStorybookMode, useAppDispatch, useAppSelector,
+} from '@/shared/lib';
 import cls from './EditableProfileCardHeader.module.scss';
 import { Button, Text } from '@/shared/ui';
-import { getProfileIsReadonly, profileActions, updateProfileData } from '../../model';
+import {
+  getProfileData, getProfileIsReadonly, profileActions, updateProfileData,
+} from '../../model';
 
 interface EditableProfileCardHeaderProps {
  className?: string;
@@ -15,6 +19,7 @@ export const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = ({ 
   const dispatch = useAppDispatch();
 
   const isReadonly = useAppSelector(getProfileIsReadonly);
+  const profile = useAppSelector(getProfileData);
 
   const handleSetEditMode = () => dispatch(
     profileActions.setReadOnly(false),
@@ -24,9 +29,13 @@ export const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = ({ 
     profileActions.cancelEditProfileForm(),
   );
 
-  const saveFormData = () => dispatch(
-    updateProfileData(),
-  );
+  const saveFormData = () => {
+    if (isStorybookMode()) return;
+
+    dispatch(
+      updateProfileData(),
+    );
+  };
 
   return (
     <div className={clsx([cls.editableProfileCardHeader, className])}>
@@ -36,6 +45,7 @@ export const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = ({ 
           theme="outline"
           className={cls.editBtn}
           onClick={handleSetEditMode}
+          disabled={!profile}
         >
           {t('edit')}
         </Button>

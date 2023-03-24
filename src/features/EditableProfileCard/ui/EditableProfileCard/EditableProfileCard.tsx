@@ -1,8 +1,9 @@
-import { FC, useCallback } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import { isStorybookMode, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { Country, Currency, ProfileCard } from '@/entities';
 import {
+  fetchProfileData,
   getProfileError,
   getProfileForm,
   getProfileIsLoading,
@@ -22,6 +23,12 @@ interface EditableProfileCardProps {
 export const EditableProfileCard: FC<EditableProfileCardProps> = ({ className }) => {
   const { t } = useTranslation('profile');
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isStorybookMode()) return;
+
+    dispatch(fetchProfileData());
+  }, [dispatch]);
 
   const formData = useAppSelector(getProfileForm);
   const error = useAppSelector(getProfileError);

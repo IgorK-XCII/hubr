@@ -8,7 +8,7 @@ import { buildDefinePlugin } from './plugins';
 
 export function buildPlugins(options: BuildOptions): WebpackPluginInstance[] {
   const {
-    paths, isDev, analyze, apiUrl,
+    paths, isDev, analyze, apiUrl, project,
   } = options;
 
   const plugins: WebpackPluginInstance[] = [
@@ -20,7 +20,7 @@ export function buildPlugins(options: BuildOptions): WebpackPluginInstance[] {
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[contenthash:8].css',
     }),
-    buildDefinePlugin(isDev, apiUrl),
+    buildDefinePlugin(isDev, apiUrl, project),
   ];
 
   if (isDev) {
