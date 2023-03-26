@@ -4,7 +4,7 @@ import { TestAsyncThunk } from '@/shared/config/tests';
 
 describe('loginByUsername', () => {
   test('success login', async () => {
-    const userData = { username: '123', id: '1' };
+    const userData = { username: '123', id: 1 };
 
     const thunk = new TestAsyncThunk(loginByUsername);
 
