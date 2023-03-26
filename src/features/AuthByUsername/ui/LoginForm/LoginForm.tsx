@@ -1,4 +1,6 @@
-import { FC, memo } from 'react';
+import {
+  FC, memo, useCallback, useEffect,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   clsx, useAppDispatch, useAppSelector, useLazyReducersLoader,
@@ -39,12 +41,24 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className, onClose }) => {
   const handleChangePassword = (value: string) => dispatch(
     loginActions.setPassword(value),
   );
-  const handleLogin = () => dispatch(
+  const handleLogin = useCallback(() => dispatch(
     loginByUsername({ username, password }),
   )
     .then((res) => {
       if (res.meta.requestStatus === 'fulfilled') onClose();
-    });
+    }), [username, password, dispatch, onClose]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') handleLogin();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleLogin]);
 
   return (
     <div className={clsx([cls.LoginForm, className])}>
@@ -63,7 +77,7 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className, onClose }) => {
         disabled={isLoading}
       />
       {error && (
-      <Text text={t(error)} theme="error" />
+        <Text text={t(error)} theme="error" />
       )}
       <Button
         className={cls.loginBtn}

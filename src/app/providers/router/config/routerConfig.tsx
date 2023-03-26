@@ -1,6 +1,6 @@
 import { RouteProps } from 'react-router-dom';
 import {
-  AboutPage, MainPage, NotFoundPage, ProfilePage,
+  AboutPage, ArticleDetailsPage, ArticlesPage, MainPage, NotFoundPage, ProfilePage,
 } from '@/pages';
 import { RouterPaths } from '@/shared/config/router';
 import { APP_ROUTES } from '@/shared/config/router/appRoutes';
@@ -22,6 +22,16 @@ export const routerConfig: Record<APP_ROUTES, AppRouteProps> = {
   [APP_ROUTES.PROFILE]: {
     path: RouterPaths.profile,
     element: <ProfilePage />,
+    authOnly: true,
+  },
+  [APP_ROUTES.ARTICLES]: {
+    path: RouterPaths.articles,
+    element: <ArticlesPage />,
+    authOnly: true,
+  },
+  [APP_ROUTES.ARTICLE_DETAILS]: {
+    path: RouterPaths.articleDetails,
+    element: <ArticleDetailsPage />,
     authOnly: true,
   },
   [APP_ROUTES.NOT_FOUND]: {

@@ -10,5 +10,6 @@
   "aboutPage": "About site",
   "login": "Login",
   "login error": "Incorrect login or password",
-  "profilePage": "Profile"
+  "profilePage": "Profile",
+  "articles": "Articles"
 }

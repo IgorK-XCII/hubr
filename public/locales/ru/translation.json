@@ -9,5 +9,6 @@
   "aboutPage": "О сайте",
   "login": "Войти",
   "login error": "Неверный логин или пароль",
-  "profilePage": "Профиль"
+  "profilePage": "Профиль",
+  "articles": "Статьи"
 }
