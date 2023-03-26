@@ -20,7 +20,9 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
   const isAuth = useAppSelector(getUserAuthData);
 
   const itemsList = useMemo(() => sidebarItemsListConfig
-    .filter((item) => (item.authOnly ? isAuth : true)), [isAuth]);
+    .filter(
+      (item) => !item.authOnly || isAuth,
+    ), [isAuth]);
 
   const onToggle = () => setCollapsed((prev) => !prev);
 

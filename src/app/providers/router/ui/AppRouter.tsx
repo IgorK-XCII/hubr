@@ -12,7 +12,9 @@ export const AppRouter = () => {
     <Suspense fallback={<PageLoader />}>
       <Routes>
         {Object.values(routerConfig)
-          .filter((route) => (route.authOnly ? isAuth : true))
+          .filter(
+            (route) => !route.authOnly || isAuth,
+          )
           .map((props) => (
             <Route
               {...props}
