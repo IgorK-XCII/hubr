@@ -4,6 +4,7 @@ import { LOCAL_STORAGE_THEME_KEY } from '../config/themeConstants';
 export enum THEME {
   LIGHT = 'light',
   DARK = 'dark',
+  ORANGE = 'orange'
 }
 
 const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as THEME) || THEME.LIGHT;
