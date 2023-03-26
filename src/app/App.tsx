@@ -8,14 +8,14 @@ import '@/shared/config/i18n';
 import { useInitAuthData } from '@/entities';
 
 export function App() {
-  useInitAuthData();
+  const { userInited } = useInitAuthData();
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Navbar />
       <div className="content-block">
         <Sidebar />
-        <AppRouter />
+        {userInited && <AppRouter />}
       </div>
     </Suspense>
   );

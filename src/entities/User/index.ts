@@ -11,4 +11,5 @@ export {
   getAuthDataFromStorage,
   setAuthDataToStorage,
   useInitAuthData,
+  useIsUserAuth,
 } from './lib';

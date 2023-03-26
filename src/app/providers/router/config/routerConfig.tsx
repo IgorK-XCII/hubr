@@ -7,6 +7,7 @@ import { APP_ROUTES } from '@/shared/config/router/appRoutes';
 
 type AppRouteProps = RouteProps & {
   authOnly?: boolean;
+  element: JSX.Element;
 }
 
 export const routerConfig: Record<APP_ROUTES, AppRouteProps> = {
