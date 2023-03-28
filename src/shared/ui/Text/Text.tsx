@@ -2,15 +2,17 @@ import { FC, memo } from 'react';
 import { clsx } from '@/shared/lib';
 import cls from './Text.module.scss';
 
-type TextTheme = 'primary' | 'error'
-type TextAlign = 'left' | 'center' | 'right'
+type TextTheme = 'primary' | 'error';
+type TextAlign = 'left' | 'center' | 'right';
+type TextSize = 'm' | 'l';
 
 interface TextProps {
  className?: string;
  title?: string;
- text?: string;
+ text?: string | number;
  theme?: TextTheme;
  align?: TextAlign;
+ size?: TextSize;
 }
 
 export const Text: FC<TextProps> = memo(({
@@ -19,8 +21,20 @@ export const Text: FC<TextProps> = memo(({
   text,
   theme = 'primary',
   align = 'left',
+  size = 'm',
 }) => (
-  <div className={clsx([cls.text, className, cls[theme], cls[align]])}>
+  <div className={
+    clsx(
+      [
+        cls.text,
+        className,
+        cls[theme],
+        cls[align],
+        cls[size],
+      ],
+    )
+}
+  >
     {title && (
       <p className={cls.title}>{title}</p>
     )}

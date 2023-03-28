@@ -13,10 +13,11 @@ export const parameters = {
   },
   themes: {
     target: '.app',
-    default: 'light',
+    default: 'orange',
     list: [
       { name: 'light', class: 'light' },
       { name: 'dark', class: 'dark' },
+      { name: 'orange', class: 'orange' },
     ],
   },
 };

@@ -1,5 +1,7 @@
 .articleDetails {
   min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .skeletonContainer {
@@ -10,4 +12,12 @@
 
 .avatar {
   align-self: center;
+}
+
+.articleInfo {
+  display: flex;
+
+  :first-child {
+    margin-right: 10px;
+  }
 }

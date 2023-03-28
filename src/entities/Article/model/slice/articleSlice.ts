@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchArticleById } from '../services';
 import { ArticleSchema } from '../types';
 
-const initialState: ArticleSchema = {
+export const initialState: ArticleSchema = {
   data: null,
   isLoading: false,
   error: null,
@@ -28,4 +28,4 @@ const articleSlice = createSlice({
   },
 });
 
-export const { actions: articleActions, reducer: articleReducers } = articleSlice;
+export const { actions: articleActions, reducer: articleReducer } = articleSlice;
