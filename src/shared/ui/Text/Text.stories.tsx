@@ -8,6 +8,8 @@ export default {
     backgroundColor: { control: 'color' },
   },
   args: {
+    title: 'Title',
+    text: 'Text',
   },
 } as ComponentMeta<typeof Text>;
 
@@ -15,14 +17,16 @@ const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />;
 
 export const PrimaryTheme = Template.bind({});
 PrimaryTheme.args = {
-  title: 'Title',
-  text: 'Text',
   theme: 'primary',
 };
 
 export const ErrorTheme = Template.bind({});
 ErrorTheme.args = {
-  title: 'Title',
-  text: 'Text',
   theme: 'error',
+};
+
+export const WithLSize = Template.bind({});
+PrimaryTheme.args = {
+  theme: 'primary',
+  size: 'l',
 };

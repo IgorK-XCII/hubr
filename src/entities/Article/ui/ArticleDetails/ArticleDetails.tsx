@@ -4,17 +4,24 @@ import { useParams } from 'react-router-dom';
 import { clsx } from '@/shared/lib/clsx';
 import cls from './ArticleDetails.module.scss';
 import { LazyReducers } from '@/app/providers';
-import { articleReducers, fetchArticleById } from '../../model';
-import { useAppDispatch, useAppSelector, useLazyReducersLoader } from '@/shared/lib';
+import { articleReducer, fetchArticleById } from '../../model';
+import {
+  isStorybookMode, useAppDispatch, useAppSelector, useLazyReducersLoader,
+} from '@/shared/lib';
 import { getArticleData, getArticleError, getArticleIsLoading } from '../../model/selectors';
-import { Loader, Skeleton, Text } from '@/shared/ui';
+import {
+  Avatar, Icon, Skeleton, Text,
+} from '@/shared/ui';
+import EyeIcon from '@/shared/assets/icons/eye.svg';
+import CalendarIcon from '@/shared/assets/icons/calendar.svg';
+import { ArticleBlocksContainer } from '../ArticleBlocks';
 
 interface ArticleDetailsProps {
   className?: string;
 }
 
 const lazyReducers: LazyReducers = {
-  article: articleReducers,
+  article: articleReducer,
 };
 
 export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
@@ -23,11 +30,13 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
   const { t } = useTranslation('article');
   const dispatch = useAppDispatch();
 
-  const articleData = useAppSelector(getArticleData);
+  const article = useAppSelector(getArticleData);
   const isLoading = useAppSelector(getArticleIsLoading);
   const error = useAppSelector(getArticleError);
 
   useEffect(() => {
+    if (isStorybookMode()) return;
+
     if (id) dispatch(fetchArticleById(id));
   }, [id, dispatch]);
 
@@ -51,7 +60,25 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
 
   return (
     <div className={clsx([cls.articleDetails, className])}>
-      {/* ARTICLE DETAILS */}
+      <Avatar
+        size={200}
+        src={article?.img}
+        className={cls.avatar}
+      />
+      <Text
+        title={article?.title}
+        text={article?.subtitle}
+        size="l"
+      />
+      <div className={cls.articleInfo}>
+        <Icon svg={EyeIcon} />
+        <Text text={article?.views} />
+      </div>
+      <div className={cls.articleInfo}>
+        <Icon svg={CalendarIcon} />
+        <Text text={article?.createdAt} />
+      </div>
+      <ArticleBlocksContainer blocks={article?.blocks} />
     </div>
   );
 });

@@ -6,31 +6,33 @@ export enum ArticleBLockType {
   IMAGE = 'IMAGE'
 }
 
-interface ArticleBlock {
+interface ArticleBlockBase {
   id: number;
   type: ArticleBLockType;
 }
 
-interface ArticleTextBlock extends ArticleBlock {
+export interface ArticleTextBlock extends ArticleBlockBase {
   type: ArticleBLockType.TEXT;
   paragraphs: string[];
   title: string;
 
 }
 
-interface ArticleCodeBlock extends ArticleBlock {
+export interface ArticleCodeBlock extends ArticleBlockBase {
   type: ArticleBLockType.CODE;
-  paragraphs: string[];
+  code: string;
 
 }
 
-interface ArticleImageBlock extends ArticleBlock {
+export interface ArticleImageBlock extends ArticleBlockBase {
   type: ArticleBLockType.IMAGE;
   src: string;
   title: string;
 }
 
-type ArticleBlocks = Array<ArticleTextBlock | ArticleCodeBlock | ArticleImageBlock>;
+export type ArticleBlock = ArticleTextBlock | ArticleCodeBlock | ArticleImageBlock;
+
+export type ArticleBlocks = ArticleBlock[];
 
 export interface Article {
   id: number;
