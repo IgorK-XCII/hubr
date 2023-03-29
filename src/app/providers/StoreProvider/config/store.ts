@@ -1,13 +1,11 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { RootState, StoreWithManager, LazyReducersWithAny } from '../types';
-import { counterReducer } from '@/entities/Counter';
 import { userReducer } from '@/entities/User';
 import { authMiddleware } from '../middleware';
 import { createReducerManager } from './reducerManager';
 import { $api } from '@/shared/api';
 
 export const rootReducer: ReducersMapObject<RootState> = {
-  counter: counterReducer,
   user: userReducer,
 };
 

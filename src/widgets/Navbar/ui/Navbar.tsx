@@ -7,7 +7,7 @@ import { clsx, useAppDispatch } from '@/shared/lib';
 import cls from './Navbar.module.scss';
 import { Button } from '@/shared/ui';
 import { LoginModal } from '@/features/AuthByUsername';
-import { getUserAuthData, userActions } from '@/entities';
+import { getUserAuthData, userActions } from '@/entities/User';
 
 interface NavbarProps {
   className?: string;

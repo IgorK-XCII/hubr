@@ -8,7 +8,7 @@ import cls from './Sidebar.module.scss';
 import { Button } from '@/shared/ui';
 import { SidebaritemsList } from '../SidebarItemsList';
 import { sidebarItemsListConfig } from '../../config';
-import { getUserAuthData } from '@/entities';
+import { getUserAuthData } from '@/entities/User';
 
 interface SidebarProps {
   className?: string;

@@ -1,7 +1,6 @@
 import { FC, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { isStorybookMode, useAppDispatch, useAppSelector } from '@/shared/lib';
-import { Country, Currency, ProfileCard } from '@/entities';
 import {
   fetchProfileData,
   getProfileError,
@@ -15,6 +14,9 @@ import {
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader';
 import cls from './EditableProfileCard.module.scss';
 import { Text } from '@/shared/ui';
+import { Currency } from '@/entities/Currency';
+import { Country } from '@/entities/Country';
+import { ProfileCard } from '@/entities/Profile';
 
 interface EditableProfileCardProps {
  className?: string;

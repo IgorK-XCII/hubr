@@ -1,7 +1,8 @@
 import { initialState, profileActions, profileReducer } from './profileSlice';
 import { ProfileSchema, ValidateProfileError } from '../types';
-import { Country, Currency } from '@/entities';
 import { fetchProfileData } from '../services';
+import { Currency } from '@/entities/Currency';
+import { Country } from '@/entities/Country';
 
 const data = {
   firstname: 'Harry',

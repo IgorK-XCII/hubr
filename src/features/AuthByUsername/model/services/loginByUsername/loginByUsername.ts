@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { User, userActions } from '@/entities';
+import { User, userActions } from '@/entities/User';
 import { LoginSchema } from '../../types';
 import { ThunkOptions } from '@/app/providers';
 

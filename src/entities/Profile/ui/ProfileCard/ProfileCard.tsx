@@ -7,9 +7,8 @@ import {
 import { clsx } from '@/shared/lib';
 import cls from './ProfileCard.module.scss';
 import { Profile } from '../../model';
-import {
-  Country, CountrySelect, Currency, CurrencySelect,
-} from '@/entities';
+import { Currency, CurrencySelect } from '@/entities/Currency';
+import { Country, CountrySelect } from '@/entities/Country';
 
 export interface ProfileCardProps {
   className?: string;

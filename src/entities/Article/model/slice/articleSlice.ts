@@ -13,18 +13,21 @@ const articleSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(fetchArticleById.pending, (state) => {
-      state.error = null;
-      state.isLoading = true;
-    }).addCase(fetchArticleById.fulfilled, (state, { payload }) => {
-      state.data = payload;
-      state.isLoading = false;
-    }).addCase(fetchArticleById.rejected, (state, { payload }) => {
-      if (payload) {
-        state.error = payload;
-      }
-      state.isLoading = false;
-    });
+    builder
+      .addCase(fetchArticleById.pending, (state) => {
+        state.error = null;
+        state.isLoading = true;
+      })
+      .addCase(fetchArticleById.fulfilled, (state, { payload }) => {
+        state.data = payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchArticleById.rejected, (state, { payload }) => {
+        if (payload) {
+          state.error = payload;
+        }
+        state.isLoading = false;
+      });
   },
 });
 

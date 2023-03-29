@@ -1,0 +1,9 @@
+.commentCardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  >:not(:last-child) {
+    margin-right: 8px;
+  }
+}

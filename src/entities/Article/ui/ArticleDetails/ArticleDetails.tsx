@@ -18,6 +18,7 @@ import { ArticleBlocksContainer } from '../ArticleBlocks';
 
 interface ArticleDetailsProps {
   className?: string;
+  id: string | undefined;
 }
 
 const lazyReducers: LazyReducers = {
@@ -25,8 +26,7 @@ const lazyReducers: LazyReducers = {
 };
 
 export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
-  const { className } = props;
-  const { id } = useParams();
+  const { className, id } = props;
   const { t } = useTranslation('article');
   const dispatch = useAppDispatch();
 

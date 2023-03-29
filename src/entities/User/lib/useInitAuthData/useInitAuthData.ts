@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { userActions } from '@/entities';
+import { userActions } from '@/entities/User';
 import { getAuthDataFromStorage } from '../authDataStorage';
 import { useAppDispatch } from '@/shared/lib';
 

@@ -2,7 +2,7 @@ import { Story } from '@storybook/react';
 import { LazyReducers, RootState, StoreProvider } from '@/app/providers';
 import { loginReducer } from '@/features/AuthByUsername/model/slice';
 import { profileReducer } from '@/features/EditableProfileCard';
-import { articleReducer } from '@/entities';
+import { articleReducer } from '@/entities/Article';
 
 const defaultLazyReducers: LazyReducers = {
   login: loginReducer,

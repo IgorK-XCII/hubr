@@ -1,7 +1,8 @@
 import { updateProfileData } from './updateProfileData';
-import { Country, Currency } from '@/entities';
 import { TestAsyncThunk } from '@/shared/config/tests';
 import { ValidateProfileError } from '../../types';
+import { Currency } from '@/entities/Currency';
+import { Country } from '@/entities/Country';
 
 const data = {
   firstname: 'Harry',

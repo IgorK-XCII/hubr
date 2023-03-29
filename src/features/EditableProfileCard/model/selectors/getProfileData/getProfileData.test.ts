@@ -1,5 +1,6 @@
 import { RootState } from '@/app/providers';
-import { Country, Currency } from '@/entities';
+import { Country } from '@/entities/Country';
+import { Currency } from '@/entities/Currency';
 import { getProfileData } from './getProfileData';
 
 describe('getProfileData', () => {

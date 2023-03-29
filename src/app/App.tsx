@@ -5,7 +5,7 @@ import { AppRouter } from './providers';
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/SIdebar';
 import '@/shared/config/i18n';
-import { useInitAuthData } from '@/entities';
+import { useInitAuthData } from '@/entities/User';
 
 export function App() {
   const { userInited } = useInitAuthData();

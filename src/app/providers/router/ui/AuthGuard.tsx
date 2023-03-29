@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import { useIsUserAuth } from '@/entities';
 import { RouterPaths } from '@/shared/config/router';
+import { useIsUserAuth } from '@/entities/User';
 
 interface AuthGuardProps {
   children: JSX.Element;
