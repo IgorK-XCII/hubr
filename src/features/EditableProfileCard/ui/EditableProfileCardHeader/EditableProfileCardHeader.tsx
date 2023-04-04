@@ -8,6 +8,7 @@ import { Button, Text } from '@/shared/ui';
 import {
   getProfileData, getProfileIsReadonly, profileActions, updateProfileData,
 } from '../../model';
+import { getUserAuthData } from '@/entities/User';
 
 interface EditableProfileCardHeaderProps {
  className?: string;
@@ -20,6 +21,9 @@ export const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = ({ 
 
   const isReadonly = useAppSelector(getProfileIsReadonly);
   const profile = useAppSelector(getProfileData);
+  const authData = useAppSelector(getUserAuthData);
+
+  const allowEditProfile = authData?.id === profile?.id;
 
   const handleSetEditMode = () => dispatch(
     profileActions.setReadOnly(false),
@@ -32,9 +36,11 @@ export const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = ({ 
   const saveFormData = () => {
     if (isStorybookMode()) return;
 
-    dispatch(
-      updateProfileData(),
-    );
+    if (profile?.id) {
+      dispatch(
+        updateProfileData(profile.id),
+      );
+    }
   };
 
   return (
@@ -45,7 +51,7 @@ export const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = ({ 
           theme="outline"
           className={cls.editBtn}
           onClick={handleSetEditMode}
-          disabled={!profile}
+          disabled={!allowEditProfile}
         >
           {t('edit')}
         </Button>

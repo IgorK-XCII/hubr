@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { clsx } from '@/shared/lib/clsx';
@@ -11,8 +11,9 @@ import {
 } from '@/shared/lib';
 import { LazyReducers } from '@/app/providers';
 import { articleCommentsReducer, getArticleComments } from '../../model/slice';
-import { getArticleCommentsError, getArticleCommentsIsLoadingFlg } from '../../model/selectors';
-import { fetchCommentsByArticleId } from '../../model/services';
+import { getArticleCommentsIsLoadingFlg } from '../../model/selectors';
+import { addCommentForArticle, fetchCommentsByArticleId } from '../../model/services';
+import { AddCommentForm } from '@/features/AddCommentForm';
 
 interface ArticleDetailsPageProps {
   className?: string;
@@ -29,7 +30,6 @@ export const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
   const { id } = useParams();
   const comments = useAppSelector(getArticleComments.selectAll);
   const isLoading = useAppSelector(getArticleCommentsIsLoadingFlg);
-  // const error = useAppSelector(getArticleCommentsError);
 
   useEffect(() => {
     if (isStorybookMode()) return;
@@ -39,10 +39,15 @@ export const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
 
   useLazyReducersLoader(lazyReducers);
 
+  const handleAddComment = useCallback((text: string) => {
+    dispatch(addCommentForArticle(text));
+  }, [dispatch]);
+
   return (
     <div className={clsx([cls.articleDetailsPage, className])}>
       <ArticleDetails id={id} />
       <Text title={t('comments')} className={cls.commentTitle} />
+      <AddCommentForm className={cls.addCommentForm} onSendComment={handleAddComment} />
       <CommentList
         isLoading={isLoading}
         comments={comments}

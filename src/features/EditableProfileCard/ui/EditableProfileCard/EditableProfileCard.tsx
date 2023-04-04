@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import { isStorybookMode, useAppDispatch, useAppSelector } from '@/shared/lib';
 import {
   fetchProfileData,
@@ -25,12 +26,13 @@ interface EditableProfileCardProps {
 export const EditableProfileCard: FC<EditableProfileCardProps> = ({ className }) => {
   const { t } = useTranslation('profile');
   const dispatch = useAppDispatch();
+  const { id } = useParams();
 
   useEffect(() => {
     if (isStorybookMode()) return;
 
-    dispatch(fetchProfileData());
-  }, [dispatch]);
+    if (id) dispatch(fetchProfileData(id));
+  }, [dispatch, id]);
 
   const formData = useAppSelector(getProfileForm);
   const error = useAppSelector(getProfileError);

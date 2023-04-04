@@ -15,11 +15,11 @@ export const CommentCard: FC<CommentCardProps> = (props) => {
   const { className, comment } = props;
 
   const { text, user } = comment;
-  const { avatar, username } = user;
+  const { avatar, username, id } = user;
 
   return (
     <CommentCardContainer className={clsx([cls.commentCard, className])}>
-      <CommentCardHeader>
+      <CommentCardHeader userId={id}>
         {avatar && (
           <Avatar size={30} src={avatar} />
         )}

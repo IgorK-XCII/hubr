@@ -2,6 +2,7 @@ import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
 
 export type Profile = Partial<{
+  id?: number;
   firstname: string;
   lastname: string
   age: number;

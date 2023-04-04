@@ -26,7 +26,7 @@ describe('updateProfileData success', () => {
       Promise.resolve({ data }),
     );
 
-    const result = await thunk.callThunk();
+    const result = await thunk.callThunk('1');
 
     expect(thunk.api.put).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('fulfilled');
@@ -45,7 +45,7 @@ describe('updateProfileData success', () => {
       Promise.reject(),
     );
 
-    const result = await thunk.callThunk();
+    const result = await thunk.callThunk('1');
 
     expect(thunk.api.put).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('rejected');
@@ -63,7 +63,7 @@ describe('updateProfileData success', () => {
       },
     });
 
-    const result = await thunk.callThunk();
+    const result = await thunk.callThunk('1');
 
     expect(thunk.api.put).toHaveBeenCalledTimes(0);
     expect(result.meta.requestStatus).toBe('rejected');

@@ -5,6 +5,7 @@ import { ProfileSchema } from '@/features/EditableProfileCard';
 import { UserSchema } from '@/entities/User';
 import { ArticleSchema } from '@/entities/Article';
 import { ArticleCommentsSchema } from '@/pages';
+import { AddCommentFormSchema } from '@/features/AddCommentForm';
 
 export type RootState = {
   user: UserSchema;
@@ -12,6 +13,7 @@ export type RootState = {
   profile?: ProfileSchema;
   article?: ArticleSchema;
   articleComments?: ArticleCommentsSchema;
+  addCommentForm?: AddCommentFormSchema;
 }
 
 export type RootStateKey = keyof RootState;

@@ -3,14 +3,15 @@
   color: var(--primary-color);
   padding: 10px 15px;
 
-  &:disabled {
-    opacity: 0.5;
-  }
-
   &:hover {
     opacity: 0.8;
     fill-opacity: 0.8;
     stroke-opacity: 0.8;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
   }
 }
 

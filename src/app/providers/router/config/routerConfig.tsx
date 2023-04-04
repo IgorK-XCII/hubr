@@ -20,17 +20,17 @@ export const routerConfig: Record<APP_ROUTES, AppRouteProps> = {
     element: <AboutPage />,
   },
   [APP_ROUTES.PROFILE]: {
-    path: RouterPaths.profile,
+    path: `${RouterPaths.profile}:id`,
     element: <ProfilePage />,
     authOnly: true,
   },
   [APP_ROUTES.ARTICLES]: {
-    path: RouterPaths.articles,
+    path: `${RouterPaths.articles}`,
     element: <ArticlesPage />,
     authOnly: true,
   },
   [APP_ROUTES.ARTICLE_DETAILS]: {
-    path: RouterPaths.articleDetails,
+    path: `${RouterPaths.articleDetails}:id`,
     element: <ArticleDetailsPage />,
     authOnly: true,
   },
