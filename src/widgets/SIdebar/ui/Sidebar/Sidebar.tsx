@@ -1,14 +1,12 @@
 import {
-  FC, memo, useMemo, useState,
+  FC, memo, useState,
 } from 'react';
 import { LocaleSwitcher } from '@/features/LocaleSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
-import { clsx, useAppSelector } from '@/shared/lib';
+import { clsx } from '@/shared/lib';
 import cls from './Sidebar.module.scss';
 import { Button } from '@/shared/ui';
 import { SidebaritemsList } from '../SidebarItemsList';
-import { sidebarItemsListConfig } from '../../config';
-import { getUserAuthData } from '@/entities/User';
 
 interface SidebarProps {
   className?: string;
@@ -16,13 +14,6 @@ interface SidebarProps {
 
 export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
   const [collapsed, setCollapsed] = useState(false);
-
-  const isAuth = useAppSelector(getUserAuthData);
-
-  const itemsList = useMemo(() => sidebarItemsListConfig
-    .filter(
-      (item) => !item.authOnly || isAuth,
-    ), [isAuth]);
 
   const onToggle = () => setCollapsed((prev) => !prev);
 
@@ -46,7 +37,6 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
       </Button>
       <SidebaritemsList
         className={cls.links}
-        items={itemsList}
         collapsed={collapsed}
       />
       <div className={cls.switchers}>
