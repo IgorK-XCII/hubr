@@ -27,6 +27,10 @@ Normal.decorators = [
         views: 0,
         createdAt: '26.02.2022',
         type: ['IT', 'SCIENCE'],
+        user: {
+          id: 1,
+          username: 'user',
+        },
         blocks: [
           {
             id: 1,

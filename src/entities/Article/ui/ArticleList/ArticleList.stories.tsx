@@ -1,12 +1,6 @@
-import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
-import { clsx } from '@/shared/lib/clsx';
-import cls from './ArticlesPage.module.scss';
-import { Article, ArticleList } from '@/entities/Article';
-
-interface ArticlePageProps {
-  className?: string;
-}
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Article } from '../../model';
+import { ArticleList } from './ArticleList';
 
 const article = {
   id: 1,
@@ -88,13 +82,44 @@ const article = {
   ],
 } as unknown as Article;
 
-export const ArticlesPage: FC<ArticlePageProps> = (props) => {
-  const { className } = props;
-  const { t } = useTranslation();
+const articleList = new Array(16).fill('').map((_, index) => ({
+  ...article,
+  id: index,
+}));
 
-  return (
-    <div className={clsx([cls.articlePage, className])}>
-      <ArticleList view="LIST" articles={new Array(16).fill(article)} />
-    </div>
-  );
+export default {
+  title: 'entities/ArticleList',
+  component: ArticleList,
+  argTypes: {
+    backgroundColor: { control: 'color' },
+  },
+  args: {
+    articles: [article],
+  },
+} as ComponentMeta<typeof ArticleList>;
+
+const Template: ComponentStory<typeof ArticleList> = (args) => <ArticleList {...args} />;
+
+export const isLoadingList = Template.bind({});
+isLoadingList.args = {
+  isLoading: true,
+  view: 'LIST',
+};
+
+export const isLoadingTile = Template.bind({});
+isLoadingTile.args = {
+  isLoading: true,
+  view: 'TILE',
+};
+
+export const List = Template.bind({});
+List.args = {
+  view: 'LIST',
+  articles: articleList,
+};
+
+export const Tile = Template.bind({});
+Tile.args = {
+  view: 'TILE',
+  articles: articleList,
 };

@@ -11,6 +11,10 @@ const data = {
   type: ['IT', 'SCIENCE'],
   img: '',
   blocks: [],
+  user: {
+    id: 1,
+    username: 'user',
+  },
 };
 
 describe('articleSlice', () => {

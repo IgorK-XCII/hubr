@@ -10,3 +10,4 @@ export * from './Select';
 export * from './Skeleton';
 export * from './Icon';
 export * from './Code';
+export * from './Card';

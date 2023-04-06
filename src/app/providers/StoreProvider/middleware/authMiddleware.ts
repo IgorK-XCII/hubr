@@ -8,7 +8,6 @@ const isLoggedOut = isAnyOf(userActions.logout);
 export const authMiddleware = () => (
   next: (action: AnyAction) => void,
 ) => (action: AnyAction): void => {
-  console.log(action);
   if (isLoggedIn(action)) setAuthDataToStorage(action.payload);
 
   if (isLoggedOut(action)) deleteAuthDataFromStorage();

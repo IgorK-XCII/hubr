@@ -1,5 +1,5 @@
-export { ArticleDetails } from './ui';
-export type { Article, ArticleSchema } from './model';
+export { ArticleDetails, ArticleList } from './ui';
+export { Article, ArticleSchema, ArticleView } from './model';
 export {
   articleActions, articleReducer, ArticleBLockType, getArticleData,
 } from './model';

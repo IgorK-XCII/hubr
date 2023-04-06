@@ -1,12 +1,16 @@
-import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
-import { clsx } from '@/shared/lib/clsx';
-import cls from './ArticlesPage.module.scss';
-import { Article, ArticleList } from '@/entities/Article';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Article, ArticleView } from '../../model';
+import { ArticleListItem } from './ArticleListItem';
 
-interface ArticlePageProps {
-  className?: string;
-}
+export default {
+  title: 'entities/ArticleListItem',
+  component: ArticleListItem,
+  argTypes: {
+    backgroundColor: { control: 'color' },
+  },
+} as ComponentMeta<typeof ArticleListItem>;
+
+const Template: ComponentStory<typeof ArticleListItem> = (args) => <ArticleListItem {...args} />;
 
 const article = {
   id: 1,
@@ -88,13 +92,14 @@ const article = {
   ],
 } as unknown as Article;
 
-export const ArticlesPage: FC<ArticlePageProps> = (props) => {
-  const { className } = props;
-  const { t } = useTranslation();
+export const Tile = Template.bind({});
+Tile.args = {
+  article,
+  view: ArticleView.TILE,
+};
 
-  return (
-    <div className={clsx([cls.articlePage, className])}>
-      <ArticleList view="LIST" articles={new Array(16).fill(article)} />
-    </div>
-  );
+export const List = Template.bind({});
+List.args = {
+  article,
+  view: ArticleView.LIST,
 };
