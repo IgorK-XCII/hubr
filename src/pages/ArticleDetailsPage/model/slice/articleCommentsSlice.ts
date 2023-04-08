@@ -21,7 +21,7 @@ const articleCommentsSlice = createSlice({
     isLoading: false,
     error: null,
     ids: [],
-    entities: { },
+    entities: {},
   }),
   reducers: {},
   extraReducers(builder) {

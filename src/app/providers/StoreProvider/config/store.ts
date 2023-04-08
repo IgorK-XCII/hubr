@@ -1,7 +1,7 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { RootState, StoreWithManager, LazyReducersWithAny } from '../types';
 import { userReducer } from '@/entities/User';
-import { authMiddleware } from '../middleware';
+import { articlesViewMiddleware, authMiddleware } from '../middleware';
 import { createReducerManager } from './reducerManager';
 import { $api } from '@/shared/api';
 
@@ -28,7 +28,7 @@ export const createReduxStore = (
           api: $api,
         },
       },
-    }).concat(authMiddleware),
+    }).concat(authMiddleware).concat(articlesViewMiddleware),
   });
 
   const _store = store as StoreWithManager;

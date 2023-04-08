@@ -4,7 +4,7 @@ import { createReducerManager } from '../config/reducerManager';
 import { ProfileSchema } from '@/features/EditableProfileCard';
 import { UserSchema } from '@/entities/User';
 import { ArticleSchema } from '@/entities/Article';
-import { ArticleCommentsSchema } from '@/pages';
+import { ArticleCommentsSchema, ArticlePageSchema } from '@/pages';
 import { AddCommentFormSchema } from '@/features/AddCommentForm';
 
 export type RootState = {
@@ -14,6 +14,7 @@ export type RootState = {
   article?: ArticleSchema;
   articleComments?: ArticleCommentsSchema;
   addCommentForm?: AddCommentFormSchema;
+  articlePage?: ArticlePageSchema;
 }
 
 export type RootStateKey = keyof RootState;
