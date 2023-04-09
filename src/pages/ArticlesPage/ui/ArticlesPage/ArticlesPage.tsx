@@ -1,15 +1,19 @@
-import { FC, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
+import { log } from 'console';
 import { clsx } from '@/shared/lib/clsx';
 import cls from './ArticlesPage.module.scss';
 import { ArticleList, ArticleView } from '@/entities/Article';
 import { LazyReducers } from '@/app/providers';
 import { articlePageActions, articlePageReducer, getArticles } from '../../model/slice';
 import {
-  isStorybookMode, useAppDispatch, useAppSelector, useLazyReducersLoader,
+  isStorybookMode, useAppDispatch, useAppSelector, useLast, useLazyReducersLoader,
 } from '@/shared/lib';
-import { fetchArticlesList } from '../../model/services';
-import { getArticlesPageIsLoading, getArticlesPageView } from '../../model/selectors';
+import { fetchArticlesList, fetchNextArticlesPage } from '../../model/services';
+import {
+  getArticlesPageHasMore, getArticlesPageIsLoading, getArticlesPageNum, getArticlesPageView,
+} from '../../model/selectors';
 import { ArticleViewSelector } from '@/features/ArticleViewSelector';
+import { Page } from '@/shared/ui';
 
 interface ArticlePageProps {
   className?: string;
@@ -32,17 +36,24 @@ export const ArticlesPage: FC<ArticlePageProps> = (props) => {
   useEffect(() => {
     if (isStorybookMode()) return;
 
-    dispatch(fetchArticlesList());
+    dispatch(articlePageActions.initState());
   }, [dispatch]);
 
   const handleViewClick = (
     viewMode: ArticleView,
   ) => dispatch(articlePageActions.setView(viewMode));
 
+  const handleLoadNext = useCallback(() => {
+    dispatch(fetchNextArticlesPage());
+  }, [dispatch]);
+
   return (
-    <div className={clsx([cls.articlePage, className])}>
+    <Page
+      className={clsx([cls.articlePage, className])}
+      onScrollEnd={handleLoadNext}
+    >
       <ArticleViewSelector view={view} onViewClick={handleViewClick} />
       <ArticleList view={view} articles={articles} isLoading={isLoading} />
-    </div>
+    </Page>
   );
 };

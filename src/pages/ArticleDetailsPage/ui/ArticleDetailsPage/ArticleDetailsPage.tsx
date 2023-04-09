@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { clsx } from '@/shared/lib/clsx';
 import cls from './ArticleDetailsPage.module.scss';
-import { Button, Text } from '@/shared/ui';
+import { Button, Page, Text } from '@/shared/ui';
 import { ArticleDetails } from '@/entities/Article';
 import { CommentList } from '@/entities/Comment';
 import {
@@ -50,7 +50,7 @@ export const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
   }, [dispatch]);
 
   return (
-    <div className={clsx([cls.articleDetailsPage, className])}>
+    <Page className={clsx([cls.articleDetailsPage, className])}>
       <Button theme="outline" onClick={handleBackClick}>
         {t('back')}
       </Button>
@@ -61,6 +61,6 @@ export const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
         isLoading={isLoading}
         comments={comments}
       />
-    </div>
+    </Page>
   );
 };

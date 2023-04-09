@@ -12,13 +12,11 @@ export const AppRouter = () => (
           <Route
             {...props}
             element={(
-              <div className="page-wrapper">
-                {props.authOnly ? (
+                props.authOnly ? (
                   <AuthGuard>
                     {props.element}
                   </AuthGuard>
-                ) : props.element}
-              </div>
+                ) : props.element
             )}
             key={props.path}
           />

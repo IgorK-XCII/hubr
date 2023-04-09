@@ -26,24 +26,24 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
 
   if (authData) {
     return (
-      <div className={clsx([cls.navbar, className])}>
+      <header className={clsx([cls.navbar, className])}>
         <div className={clsx([cls.links])}>
           <Button theme="clear-inverted" onClick={handleLogout}>
             {t('logout')}
           </Button>
         </div>
-      </div>
+      </header>
     );
   }
 
   return (
-    <div className={clsx([cls.navbar, className])}>
+    <header className={clsx([cls.navbar, className])}>
       <div className={clsx([cls.links])}>
         <Button theme="clear-inverted" onClick={handleOpenAuthModal}>
           {t('login')}
         </Button>
       </div>
       <LoginModal isOpen={isAuthModalOpen} onClose={handleCloseAuthModal} />
-    </div>
+    </header>
   );
 });

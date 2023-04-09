@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Article } from '../../model';
+import { Article, ArticleView } from '../../model';
 import { ArticleList } from './ArticleList';
 
 const article = {
@@ -103,23 +103,23 @@ const Template: ComponentStory<typeof ArticleList> = (args) => <ArticleList {...
 export const isLoadingList = Template.bind({});
 isLoadingList.args = {
   isLoading: true,
-  view: 'LIST',
+  view: ArticleView.LIST,
 };
 
 export const isLoadingTile = Template.bind({});
 isLoadingTile.args = {
   isLoading: true,
-  view: 'TILE',
+  view: ArticleView.TILE,
 };
 
 export const List = Template.bind({});
 List.args = {
-  view: 'LIST',
+  view: ArticleView.LIST,
   articles: articleList,
 };
 
 export const Tile = Template.bind({});
 Tile.args = {
-  view: 'TILE',
+  view: ArticleView.TILE,
   articles: articleList,
 };

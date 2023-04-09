@@ -18,7 +18,7 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
   const onToggle = () => setCollapsed((prev) => !prev);
 
   return (
-    <div
+    <aside
       data-testid="sidebar"
       className={clsx([cls.sidebar, className], {
         [cls.collapsed]: collapsed,
@@ -43,6 +43,6 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
         <ThemeSwitcher />
         <LocaleSwitcher short={collapsed} />
       </div>
-    </div>
+    </aside>
   );
 });

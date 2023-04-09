@@ -9,8 +9,15 @@ interface ArticleListProps {
   className?: string;
   articles: Articles;
   isLoading?: boolean;
-  view?: keyof typeof ArticleView
+  view?: ArticleView
 }
+
+const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.TILE ? 9 : 3)
+  .fill('')
+  .map((_, index) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <ArticleListItemSkeleton key={index} view={view as ArticleView} />
+  ));
 
 export const ArticleList: FC<ArticleListProps> = (props) => {
   const {
@@ -26,25 +33,15 @@ export const ArticleList: FC<ArticleListProps> = (props) => {
     [articles, view],
   );
 
-  if (isLoading) {
-    return (
-      <div className={clsx([cls.articleList, className, cls[view]])}>
-        {new Array(view === ArticleView.TILE ? 9 : 3)
-          .fill('')
-          .map((_, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-            <ArticleListItemSkeleton key={index} view={view as ArticleView} />
-          ))}
-      </div>
-    );
-  }
-
   return (
     <div className={clsx([cls.articleList, className, cls[view]])}>
       {articles.length ? (
         articleList
       ) : (
         null
+      )}
+      {isLoading && (
+        getSkeletons(view)
       )}
     </div>
   );
