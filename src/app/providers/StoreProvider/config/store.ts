@@ -4,9 +4,11 @@ import { userReducer } from '@/entities/User';
 import { articlesViewMiddleware, authMiddleware } from '../middleware';
 import { createReducerManager } from './reducerManager';
 import { $api } from '@/shared/api';
+import { scrollPositionSaverReducer } from '@/features/ScrollPositionSaver';
 
 export const rootReducer: ReducersMapObject<RootState> = {
   user: userReducer,
+  scroll: scrollPositionSaverReducer,
 };
 
 export const createReduxStore = (

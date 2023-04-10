@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { clsx } from '@/shared/lib/clsx';
 import cls from './ArticleDetailsPage.module.scss';
-import { Button, Page, Text } from '@/shared/ui';
+import { Button, Text } from '@/shared/ui';
 import { ArticleDetails } from '@/entities/Article';
 import { CommentList } from '@/entities/Comment';
 import {
@@ -15,6 +15,7 @@ import { getArticleCommentsIsLoadingFlg } from '../../model/selectors';
 import { addCommentForArticle, fetchCommentsByArticleId } from '../../model/services';
 import { AddCommentForm } from '@/features/AddCommentForm';
 import { RouterPaths } from '@/shared/config/router';
+import { Page } from '@/widgets';
 
 interface ArticleDetailsPageProps {
   className?: string;

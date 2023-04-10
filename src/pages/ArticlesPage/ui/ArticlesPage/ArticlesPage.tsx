@@ -12,7 +12,7 @@ import {
   getArticlesPageIsLoading, getArticlesPageView,
 } from '../../model/selectors';
 import { ArticleViewSelector, getArticlesViewFromStorage } from '@/features/ArticleViewSelector';
-import { Page } from '@/shared/ui';
+import { Page } from '@/widgets';
 
 interface ArticlePageProps {
   className?: string;

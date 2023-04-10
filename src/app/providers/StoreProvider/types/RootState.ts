@@ -6,9 +6,11 @@ import { UserSchema } from '@/entities/User';
 import { ArticleSchema } from '@/entities/Article';
 import { ArticleCommentsSchema, ArticlePageSchema } from '@/pages';
 import { AddCommentFormSchema } from '@/features/AddCommentForm';
+import { ScrollPositionSaverSchema } from '@/features/ScrollPositionSaver';
 
 export type RootState = {
   user: UserSchema;
+  scroll: ScrollPositionSaverSchema;
   login?: LoginSchema;
   profile?: ProfileSchema;
   article?: ArticleSchema;
