@@ -1,5 +1,4 @@
 import { FC, memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { clsx } from '@/shared/lib/clsx';
 import cls from './ArticleViewSelector.module.scss';
 import { ArticleView } from '@/entities/Article';
@@ -26,7 +25,6 @@ const viewTypes = [
 
 export const ArticleViewSelector: FC<ArticleViewSelectorProps> = memo((props) => {
   const { className, view, onViewClick } = props;
-  const { t } = useTranslation();
 
   const handleClick = (viewMode: ArticleView) => () => onViewClick(viewMode);
 
@@ -39,6 +37,7 @@ export const ArticleViewSelector: FC<ArticleViewSelectorProps> = memo((props) =>
             [cls.selected]: view === viewType.view,
           })}
           onClick={handleClick(viewType.view)}
+          key={viewType.view}
         >
           <Icon svg={viewType.icon} />
         </Button>

@@ -18,6 +18,8 @@ export const useLazyReducersLoader = (
   useLayoutEffect(() => {
     if (!alreadyMounted.current) {
       getObjectEntries(reducers).forEach(([key, reducer]) => {
+        if (store.reducerManager.isReducerMounted(key)) return;
+
         store.reducerManager.add(key, reducer);
         dispatch({ type: `@INIT ${key} reducer` });
       });

@@ -34,7 +34,7 @@ export const CommentList: FC<CommentListProps> = memo((props) => {
     <div className={clsx([cls.commentList, className])}>
       {comments?.length
         ? comments.map((comment) => (
-          <CommentCard comment={comment} />
+          <CommentCard comment={comment} key={comment.id} />
         ))
         : (
           <Text text={t('noComments')} />

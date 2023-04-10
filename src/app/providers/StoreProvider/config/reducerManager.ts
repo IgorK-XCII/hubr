@@ -37,5 +37,6 @@ export function createReducerManager(initialReducers: ReducersMapObject<RootStat
 
       combinedReducer = combineReducers(reducers);
     },
+    isReducerMounted: (key: RootStateKey) => Boolean(reducers[key]),
   };
 }

@@ -1,18 +1,17 @@
 import { FC, useCallback, useEffect } from 'react';
-import { log } from 'console';
 import { clsx } from '@/shared/lib/clsx';
 import cls from './ArticlesPage.module.scss';
 import { ArticleList, ArticleView } from '@/entities/Article';
 import { LazyReducers } from '@/app/providers';
 import { articlePageActions, articlePageReducer, getArticles } from '../../model/slice';
 import {
-  isStorybookMode, useAppDispatch, useAppSelector, useLast, useLazyReducersLoader,
+  isStorybookMode, useAppDispatch, useAppSelector, useLazyReducersLoader,
 } from '@/shared/lib';
-import { fetchArticlesList, fetchNextArticlesPage } from '../../model/services';
+import { fetchNextArticlesPage, initArticlesPage } from '../../model/services';
 import {
-  getArticlesPageHasMore, getArticlesPageIsLoading, getArticlesPageNum, getArticlesPageView,
+  getArticlesPageIsLoading, getArticlesPageView,
 } from '../../model/selectors';
-import { ArticleViewSelector } from '@/features/ArticleViewSelector';
+import { ArticleViewSelector, getArticlesViewFromStorage } from '@/features/ArticleViewSelector';
 import { Page } from '@/shared/ui';
 
 interface ArticlePageProps {
@@ -31,12 +30,12 @@ export const ArticlesPage: FC<ArticlePageProps> = (props) => {
   const isLoading = useAppSelector(getArticlesPageIsLoading);
   const view = useAppSelector(getArticlesPageView);
 
-  useLazyReducersLoader(lazyReducers);
+  useLazyReducersLoader(lazyReducers, false);
 
   useEffect(() => {
     if (isStorybookMode()) return;
 
-    dispatch(articlePageActions.initState());
+    dispatch(initArticlesPage(getArticlesViewFromStorage()));
   }, [dispatch]);
 
   const handleViewClick = (

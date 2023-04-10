@@ -9,3 +9,4 @@ export const getArticlesPageView = (
 export const getArticlesPageLimit = (state: RootState) => state.articlePage?.limit ?? 9;
 export const getArticlesPageHasMore = (state: RootState) => state.articlePage?.hasMore ?? false;
 export const getArticlesPageNum = (state: RootState) => state.articlePage?.page ?? 1;
+export const getArticlesPageIsInit = (state: RootState) => state.articlePage?._inited ?? false;
