@@ -1,5 +1,4 @@
-import { FC, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { FC, HTMLAttributeAnchorTarget, useMemo } from 'react';
 import { clsx } from '@/shared/lib/clsx';
 import cls from './ArticleList.module.scss';
 import { Articles, ArticleView } from '../../model';
@@ -9,7 +8,8 @@ interface ArticleListProps {
   className?: string;
   articles: Articles;
   isLoading?: boolean;
-  view?: ArticleView
+  view?: ArticleView;
+  target?: HTMLAttributeAnchorTarget;
 }
 
 const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.TILE ? 9 : 3)
@@ -21,16 +21,19 @@ const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.TILE 
 
 export const ArticleList: FC<ArticleListProps> = (props) => {
   const {
-    className, articles, isLoading, view = ArticleView.TILE,
+    className, articles, isLoading, view = ArticleView.TILE, target,
   } = props;
-
-  const { t } = useTranslation();
 
   const articleList = useMemo(
     () => articles.map((article) => (
-      <ArticleListItem article={article} view={view as ArticleView} key={article.id} />
+      <ArticleListItem
+        article={article}
+        view={view as ArticleView}
+        key={article.id}
+        target={target}
+      />
     )),
-    [articles, view],
+    [articles, view, target],
   );
 
   return (

@@ -7,8 +7,7 @@ import cls from './Page.module.scss';
 import {
   useAppDispatch, useAppSelector, useInfiniteScroll, useThrottle,
 } from '@/shared/lib';
-import { scrollPositionSaverActions } from '@/features/ScrollPositionSaver';
-import { getScrollSaverPositionByPath } from '@/features/ScrollPositionSaver/model/selectors/scrollPositionSaverSelectors';
+import { scrollPositionSaverActions, getScrollSaverPositionByPath } from '@/features/ScrollPositionSaver';
 
 interface PageProps {
   className?: string;
@@ -54,7 +53,9 @@ export const Page: FC<PageProps> = memo((props) => {
       onScroll={handleScroll}
     >
       {children}
-      <div ref={triggerRef} />
+      {onScrollEnd && (
+        <div ref={triggerRef} />
+      )}
     </section>
   );
 });

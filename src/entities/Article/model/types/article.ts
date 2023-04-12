@@ -1,6 +1,19 @@
 import { User } from '@/entities/User';
 
-export type ArticleTypes = string[];
+export enum ArticleSortField {
+  VIEWS = 'views',
+  TITLE = 'title',
+  CREATED = 'created'
+}
+
+export enum ArticleType {
+  ALL = 'ALL',
+  IT = 'IT',
+  SCIENCE = 'SCIENCE',
+  ECONOMICS = 'ECONOMICS'
+}
+
+export type ArticleTypes = ArticleType[];
 
 export enum ArticleBLockType {
   TEXT = 'TEXT',

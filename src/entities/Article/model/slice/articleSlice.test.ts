@@ -1,5 +1,5 @@
 import { articleReducer, initialState } from './articleSlice';
-import { ArticleSchema } from '../types';
+import { ArticleSchema, ArticleType } from '../types';
 import { fetchArticleById } from '../services';
 
 const data = {
@@ -8,7 +8,7 @@ const data = {
   subtitle: 'Что нового в JS в 22 году',
   views: 0,
   createdAt: '26.02.2022',
-  type: ['IT', 'SCIENCE'],
+  type: [ArticleType.IT, ArticleType.ECONOMICS],
   img: '',
   blocks: [],
   user: {

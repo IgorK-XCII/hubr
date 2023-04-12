@@ -4,15 +4,29 @@ import { useTranslation } from 'react-i18next';
 import { clsx } from '@/shared/lib/clsx';
 import cls from './ArticleDetailsPage.module.scss';
 import { Button, Text } from '@/shared/ui';
-import { ArticleDetails } from '@/entities/Article';
+import { ArticleDetails, ArticleList } from '@/entities/Article';
 import { CommentList } from '@/entities/Comment';
 import {
-  isStorybookMode, useAppDispatch, useAppSelector, useLazyReducersLoader,
+  isStorybookMode,
+  useAppDispatch,
+  useAppSelector,
+  useLazyReducersLoader,
 } from '@/shared/lib';
 import { LazyReducers } from '@/app/providers';
-import { articleCommentsReducer, getArticleComments } from '../../model/slice';
-import { getArticleCommentsIsLoadingFlg } from '../../model/selectors';
-import { addCommentForArticle, fetchCommentsByArticleId } from '../../model/services';
+import {
+  articleDetailsPageReducer,
+  getArticleComments,
+  getArticleRecommendations,
+} from '../../model/slices';
+import {
+  getArticleCommentsIsLoadingFlg,
+  getArticleRecommendationsIsLoadingFlg,
+} from '../../model/selectors';
+import {
+  addCommentForArticle,
+  fetchArticleRecommendations,
+  fetchCommentsByArticleId,
+} from '../../model/services';
 import { AddCommentForm } from '@/features/AddCommentForm';
 import { RouterPaths } from '@/shared/config/router';
 import { Page } from '@/widgets';
@@ -22,7 +36,7 @@ interface ArticleDetailsPageProps {
 }
 
 const lazyReducers: LazyReducers = {
-  articleComments: articleCommentsReducer,
+  articleDetailsPage: articleDetailsPageReducer,
 };
 
 export const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
@@ -31,7 +45,10 @@ export const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
   const { t } = useTranslation();
   const { id } = useParams();
   const comments = useAppSelector(getArticleComments.selectAll);
-  const isLoading = useAppSelector(getArticleCommentsIsLoadingFlg);
+  const commentsIsLoading = useAppSelector(getArticleCommentsIsLoadingFlg);
+  const recommendationsIsLoading = useAppSelector(getArticleRecommendationsIsLoadingFlg);
+  const recommendations = useAppSelector(getArticleRecommendations.selectAll);
+
   const navigate = useNavigate();
 
   const handleBackClick = () => {
@@ -42,6 +59,7 @@ export const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
     if (isStorybookMode()) return;
 
     if (id) dispatch(fetchCommentsByArticleId(id));
+    dispatch(fetchArticleRecommendations());
   }, [dispatch, id]);
 
   useLazyReducersLoader(lazyReducers);
@@ -56,10 +74,25 @@ export const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
         {t('back')}
       </Button>
       <ArticleDetails id={id} />
-      <Text title={t('comments')} className={cls.commentTitle} />
+      <Text
+        size="l"
+        title={t('recommentations')}
+        className={cls.recommentationsTitle}
+      />
+      <ArticleList
+        articles={recommendations}
+        isLoading={recommendationsIsLoading}
+        className={cls.recommentations}
+        target="_blank"
+      />
+      <Text
+        size="l"
+        title={t('comments')}
+        className={cls.commentTitle}
+      />
       <AddCommentForm className={cls.addCommentForm} onSendComment={handleAddComment} />
       <CommentList
-        isLoading={isLoading}
+        isLoading={commentsIsLoading}
         comments={comments}
       />
     </Page>

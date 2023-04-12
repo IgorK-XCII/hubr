@@ -1,12 +1,12 @@
-import { FC } from 'react';
+import { FC, HTMLAttributeAnchorTarget } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { clsx } from '@/shared/lib/clsx';
 import cls from './ArticleListItem.module.scss';
 import {
   Article, ArticleBLockType, ArticleTextBlock as ArticleTextBlockType, ArticleView,
 } from '../../model';
 import {
+  AppLink,
   Avatar, Button, Card, Icon, Text,
 } from '@/shared/ui';
 import EyeIcon from '@/shared/assets/icons/eye.svg';
@@ -17,17 +17,17 @@ interface ArticleListItemProps {
   className?: string;
   article: Article;
   view: ArticleView;
+  target?: HTMLAttributeAnchorTarget;
 }
 
 export const ArticleListItem: FC<ArticleListItemProps> = (props) => {
-  const { className, article, view } = props;
+  const {
+    className, article, view, target,
+  } = props;
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const { user } = article;
 
-  const handleOpenArticle = () => {
-    navigate(`${RouterPaths.articleDetails}${article.id}`);
-  };
+  const linkPath = `${RouterPaths.articleDetails}${article.id}`;
 
   const types = <Text text={article.type.join(', ')} className={cls.types} />;
   const views = (
@@ -56,9 +56,11 @@ export const ArticleListItem: FC<ArticleListItemProps> = (props) => {
             <ArticleTextBlock block={textBlock} className={cls.textBlock} />
           )}
           <div className={cls.footer}>
-            <Button theme="outline" onClick={handleOpenArticle}>
-              {t('readNext')}
-            </Button>
+            <AppLink to={linkPath} target={target}>
+              <Button theme="outline">
+                {t('readNext')}
+              </Button>
+            </AppLink>
             {views}
           </div>
         </Card>
@@ -68,17 +70,19 @@ export const ArticleListItem: FC<ArticleListItemProps> = (props) => {
 
   return (
     <div className={clsx([className, cls[view]])}>
-      <Card onClick={handleOpenArticle}>
-        <div className={cls.imageWrapper}>
-          <img src={article.img} alt={article.title} className={cls.img} />
-          <Text text={article.createdAt} className={cls.date} />
-        </div>
-        <div className={cls.infoWrapper}>
-          {types}
-          {views}
-        </div>
-        <Text text={article.title} className={cls.title} />
-      </Card>
+      <AppLink to={linkPath} target={target}>
+        <Card>
+          <div className={cls.imageWrapper}>
+            <img src={article.img} alt={article.title} className={cls.img} />
+            <Text text={article.createdAt} className={cls.date} />
+          </div>
+          <div className={cls.infoWrapper}>
+            {types}
+            {views}
+          </div>
+          <Text text={article.title} className={cls.title} />
+        </Card>
+      </AppLink>
     </div>
   );
 };

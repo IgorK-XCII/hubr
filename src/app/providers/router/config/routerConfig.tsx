@@ -1,9 +1,12 @@
 import { RouteProps } from 'react-router-dom';
-import {
-  AboutPage, ArticleDetailsPage, ArticlesPage, MainPage, NotFoundPage, ProfilePage,
-} from '@/pages';
 import { RouterPaths } from '@/shared/config/router';
 import { APP_ROUTES } from '@/shared/config/router/appRoutes';
+import { MainPage } from '@/pages/MainPage';
+import { AboutPage } from '@/pages/AboutPage';
+import { ProfilePage } from '@/pages/ProfilePage';
+import { ArticlesPage } from '@/pages/ArticlesPage';
+import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
+import { NotFoundPage } from '@/pages/NotFoundPage';
 
 type AppRouteProps = RouteProps & {
   authOnly?: boolean;

@@ -5,7 +5,7 @@ import { Comments } from '@/entities/Comment';
 export const fetchCommentsByArticleId = createAsyncThunk<
   Comments, string | number, ThunkOptions<string>
 >(
-  'articleComments/fetchCommentsByArticleId',
+  'articleDetails/fetchCommentsByArticleId',
   async (articleId, { extra, rejectWithValue }) => {
     try {
       const { data } = await extra.api.get<Comments>('/comments', {

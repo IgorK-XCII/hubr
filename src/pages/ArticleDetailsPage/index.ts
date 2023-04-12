@@ -1,2 +1,6 @@
 export { ArticleDetailsPageLazy as ArticleDetailsPage } from './ui';
-export type { ArticleCommentsSchema } from './model/types';
+export type {
+  ArticleCommentsSchema,
+  ArticleDetailsRecommendationsSchema,
+  ArticleDetailsPageSchema,
+} from './model/types';

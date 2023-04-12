@@ -11,7 +11,6 @@ export const useThrottle = <T extends (...args: any[]) => any>(fn: T, delay = 50
 
       setTimeout(() => {
         throttleRef.current = false;
-
         if (lastArgsRef.current) {
           callback(...lastArgsRef.current);
           lastArgsRef.current = null;

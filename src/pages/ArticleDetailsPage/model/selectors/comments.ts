@@ -2,8 +2,8 @@ import { RootState } from '@/app/providers';
 
 export const getArticleCommentsIsLoadingFlg = (
   state: RootState,
-) => state.articleComments?.isLoading || false;
+) => state.articleDetailsPage?.comments.isLoading || false;
 
 export const getArticleCommentsError = (
   state: RootState,
-) => state.articleComments?.error || null;
+) => state.articleDetailsPage?.comments.error || null;

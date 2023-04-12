@@ -1,6 +1,6 @@
 import { AnyAction, isAnyOf } from '@reduxjs/toolkit';
-import { articlePageActions } from '@/pages';
 import { setArticlesViewToStorage } from '@/features/ArticleViewSelector';
+import { articlePageActions } from '@/pages/ArticlesPage';
 
 const isSettedView = isAnyOf(articlePageActions.setView);
 

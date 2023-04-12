@@ -4,9 +4,10 @@ import { createReducerManager } from '../config/reducerManager';
 import { ProfileSchema } from '@/features/EditableProfileCard';
 import { UserSchema } from '@/entities/User';
 import { ArticleSchema } from '@/entities/Article';
-import { ArticleCommentsSchema, ArticlePageSchema } from '@/pages';
 import { AddCommentFormSchema } from '@/features/AddCommentForm';
 import { ScrollPositionSaverSchema } from '@/features/ScrollPositionSaver';
+import { ArticleDetailsPageSchema } from '@/pages/ArticleDetailsPage';
+import { ArticlePageSchema } from '@/pages/ArticlesPage';
 
 export type RootState = {
   user: UserSchema;
@@ -14,9 +15,9 @@ export type RootState = {
   login?: LoginSchema;
   profile?: ProfileSchema;
   article?: ArticleSchema;
-  articleComments?: ArticleCommentsSchema;
   addCommentForm?: AddCommentFormSchema;
   articlePage?: ArticlePageSchema;
+  articleDetailsPage?: ArticleDetailsPageSchema;
 }
 
 export type RootStateKey = keyof RootState;

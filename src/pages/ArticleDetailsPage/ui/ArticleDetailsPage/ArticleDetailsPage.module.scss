@@ -2,6 +2,17 @@
   display: block;
 }
 
+.recommentationsTitle {
+  margin-top: 20px;
+}
+
+.recommentations {
+  margin-top: 20px;
+  flex-wrap: nowrap;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
 .commentTitle {
   margin-top: 20px;
 }
