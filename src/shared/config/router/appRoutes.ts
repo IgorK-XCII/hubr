@@ -4,5 +4,7 @@ export enum APP_ROUTES {
   PROFILE = 'profile',
   ARTICLES = 'articles',
   ARTICLE_DETAILS = 'articleDetails',
-  NOT_FOUND = 'not_found'
+  ARTICLE_CREATE = 'articleCreate',
+  ARTICLE_EDIT = 'articleEdit',
+  NOT_FOUND = 'notFound'
 }

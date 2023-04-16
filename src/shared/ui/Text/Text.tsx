@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { clsx } from '@/shared/lib';
 import cls from './Text.module.scss';
 
-type TextTheme = 'primary' | 'error';
+type TextTheme = 'primary' | 'error' | 'inverted';
 type TextAlign = 'left' | 'center' | 'right';
 type TextSize = 'm' | 'l';
 

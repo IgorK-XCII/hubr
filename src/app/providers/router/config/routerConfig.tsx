@@ -7,6 +7,7 @@ import { ProfilePage } from '@/pages/ProfilePage';
 import { ArticlesPage } from '@/pages/ArticlesPage';
 import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
+import { ArticleEditPage } from '@/pages/ArticleEditPage';
 
 type AppRouteProps = RouteProps & {
   authOnly?: boolean;
@@ -37,8 +38,18 @@ export const routerConfig: Record<APP_ROUTES, AppRouteProps> = {
     element: <ArticleDetailsPage />,
     authOnly: true,
   },
+  [APP_ROUTES.ARTICLE_EDIT]: {
+    path: RouterPaths.articleEdit,
+    element: <ArticleEditPage />,
+    authOnly: true,
+  },
+  [APP_ROUTES.ARTICLE_CREATE]: {
+    path: RouterPaths.articleCreate,
+    element: <ArticleEditPage />,
+    authOnly: true,
+  },
   [APP_ROUTES.NOT_FOUND]: {
-    path: RouterPaths.not_found,
+    path: RouterPaths.notFound,
     element: <NotFoundPage />,
   },
 };

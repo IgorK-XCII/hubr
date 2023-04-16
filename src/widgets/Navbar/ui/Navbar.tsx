@@ -5,9 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { clsx, useAppDispatch } from '@/shared/lib';
 import cls from './Navbar.module.scss';
-import { Button } from '@/shared/ui';
+import { AppLink, Button, Text } from '@/shared/ui';
 import { LoginModal } from '@/features/AuthByUsername';
 import { getUserAuthData, userActions } from '@/entities/User';
+import { RouterPaths } from '@/shared/config/router';
 
 interface NavbarProps {
   className?: string;
@@ -27,6 +28,18 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
   if (authData) {
     return (
       <header className={clsx([cls.navbar, className])}>
+        <Text
+          className={cls.appName}
+          title={t('hubr')}
+          theme="inverted"
+        />
+        <AppLink
+          to={RouterPaths.articleCreate}
+          theme="secondary"
+          className={cls.cteateArticle}
+        >
+          {t('createArticle')}
+        </AppLink>
         <div className={clsx([cls.links])}>
           <Button theme="clear-inverted" onClick={handleLogout}>
             {t('logout')}

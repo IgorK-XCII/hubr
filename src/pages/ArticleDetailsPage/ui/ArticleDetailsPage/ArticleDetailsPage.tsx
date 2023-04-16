@@ -30,6 +30,7 @@ import {
 import { AddCommentForm } from '@/features/AddCommentForm';
 import { RouterPaths } from '@/shared/config/router';
 import { Page } from '@/widgets';
+import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader';
 
 interface ArticleDetailsPageProps {
   className?: string;
@@ -49,12 +50,6 @@ export const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
   const recommendationsIsLoading = useAppSelector(getArticleRecommendationsIsLoadingFlg);
   const recommendations = useAppSelector(getArticleRecommendations.selectAll);
 
-  const navigate = useNavigate();
-
-  const handleBackClick = () => {
-    navigate(RouterPaths.articles);
-  };
-
   useEffect(() => {
     if (isStorybookMode()) return;
 
@@ -70,9 +65,7 @@ export const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
 
   return (
     <Page className={clsx([cls.articleDetailsPage, className])}>
-      <Button theme="outline" onClick={handleBackClick}>
-        {t('back')}
-      </Button>
+      <ArticleDetailsPageHeader />
       <ArticleDetails id={id} />
       <Text
         size="l"

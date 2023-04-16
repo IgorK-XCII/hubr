@@ -23,6 +23,12 @@ interface EditableProfileCardProps {
  className?: string;
 }
 
+const validationErrorsTranslates = {
+  [ValidateProfileError.AGE_ERROR]: 'ageError',
+  [ValidateProfileError.NO_DATA_ERROR]: 'noDataError',
+  [ValidateProfileError.USER_DATA_ERROR]: 'userDataError',
+};
+
 export const EditableProfileCard: FC<EditableProfileCardProps> = ({ className }) => {
   const { t } = useTranslation('profile');
   const dispatch = useAppDispatch();
@@ -39,12 +45,6 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = ({ className })
   const isLoading = useAppSelector(getProfileIsLoading);
   const isReadonly = useAppSelector(getProfileIsReadonly);
   const validationErrors = useAppSelector(getProfileValidationErrors);
-
-  const validationErrorsTranslates = {
-    [ValidateProfileError.AGE_ERROR]: 'ageError',
-    [ValidateProfileError.NO_DATA_ERROR]: 'noDataError',
-    [ValidateProfileError.USER_DATA_ERROR]: 'userDataError',
-  };
 
   const handleChangeFirstName = useCallback((value: string) => dispatch(
     profileActions.updateProfileForm({ firstname: value }),

@@ -1,4 +1,5 @@
 import { MutableRefObject, useEffect } from 'react';
+import { isStorybookMode } from '../../isStorybookMode';
 
 interface useInfiniteScrollOptions {
   callback?: () => void;
@@ -10,7 +11,7 @@ export const useInfiniteScroll = (opts: useInfiniteScrollOptions) => {
   const { callback, triggerRef, wrapperRef } = opts;
 
   useEffect(() => {
-    if (!callback) return;
+    if (!callback || isStorybookMode()) return;
 
     const triggerEl = triggerRef.current;
     const wrapperEl = wrapperRef.current;

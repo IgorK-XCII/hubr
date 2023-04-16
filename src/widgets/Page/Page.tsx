@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { clsx } from '@/shared/lib/clsx';
 import cls from './Page.module.scss';
 import {
+  isStorybookMode,
   useAppDispatch, useAppSelector, useInfiniteScroll, useThrottle,
 } from '@/shared/lib';
 import { scrollPositionSaverActions, getScrollSaverPositionByPath } from '@/features/ScrollPositionSaver';
